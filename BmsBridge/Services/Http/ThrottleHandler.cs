@@ -11,7 +11,7 @@ public class ThrottleHandler : IRequestHandler
         _delay = delay;
     }
 
-    public async Task<HttpResponseMessage> SendAsync(HttpRequestMessage request)
+    public async Task<HttpResponseMessage> SendAsync(HttpRequestMessage request, CancellationToken ct)
     {
         await _lock.WaitAsync();
         try
@@ -22,7 +22,7 @@ public class ThrottleHandler : IRequestHandler
             if (elapsed < _delay)
                 await Task.Delay(_delay - elapsed);
 
-            var response = await _next.SendAsync(request);
+            var response = await _next.SendAsync(request, ct);
             _lastRequest = DateTime.UtcNow;
             return response;
         }

@@ -4,27 +4,31 @@ public class RetryHandler : IRequestHandler
     private readonly int _maxRetries;
     private readonly TimeSpan _delay;
 
-    public RetryHandler(IRequestHandler next, int maxRetries = 3, TimeSpan? retryDelay = null)
+    public RetryHandler(IRequestHandler next, int maxRetries, TimeSpan delay)
     {
         _next = next;
         _maxRetries = maxRetries;
-        _delay = retryDelay ?? TimeSpan.FromSeconds(1);
+        _delay = delay;
     }
 
-    public async Task<HttpResponseMessage> SendAsync(HttpRequestMessage request)
+    public async Task<HttpResponseMessage> SendAsync(
+        HttpRequestMessage request,
+        CancellationToken cancellationToken = default)
     {
         int attempts = 0;
 
         while (true)
         {
+            cancellationToken.ThrowIfCancellationRequested();
+
             try
             {
-                return await _next.SendAsync(request);
+                return await _next.SendAsync(request, cancellationToken);
             }
             catch when (attempts < _maxRetries)
             {
                 attempts++;
-                await Task.Delay(_delay);
+                await Task.Delay(_delay, cancellationToken);
             }
         }
     }

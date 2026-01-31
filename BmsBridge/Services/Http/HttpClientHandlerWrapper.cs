@@ -1,23 +1,27 @@
-public class HttpClientHandlerWrapper : IRequestHandler
+public class HttpClientHandlerWrapper : IRequestHandler, IDisposable
 {
     private readonly HttpClient _client;
+    private readonly HttpMessageHandler _handler;
 
     public HttpClientHandlerWrapper(string? socks5Proxy = null)
     {
-        HttpMessageHandler handler;
+        _handler = string.IsNullOrWhiteSpace(socks5Proxy)
+            ? new HttpClientHandler()
+            : Socks5HandlerFactory.Create(socks5Proxy);
 
-        if (!string.IsNullOrWhiteSpace(socks5Proxy))
-        {
-            handler = Socks5HandlerFactory.Create(socks5Proxy);
-        }
-        else
-        {
-            handler = new HttpClientHandler();
-        }
-
-        _client = new HttpClient(handler);
+        _client = new HttpClient(_handler);
     }
 
-    public Task<HttpResponseMessage> SendAsync(HttpRequestMessage request)
-        => _client.SendAsync(request);
+    public Task<HttpResponseMessage> SendAsync(
+        HttpRequestMessage request,
+        CancellationToken cancellationToken = default)
+    {
+        return _client.SendAsync(request, cancellationToken);
+    }
+
+    public void Dispose()
+    {
+        _client.Dispose();
+        _handler.Dispose();
+    }
 }
