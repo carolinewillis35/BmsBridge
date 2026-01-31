@@ -21,4 +21,9 @@ public class TimeoutHandler : IRequestHandler
 
         return await _next.SendAsync(request, linkedCts.Token);
     }
+
+    public void Dispose()
+    {
+        _next.Dispose();
+    }
 }

@@ -32,4 +32,9 @@ public class RetryHandler : IRequestHandler
             }
         }
     }
+
+    public void Dispose()
+    {
+        _next.Dispose();
+    }
 }

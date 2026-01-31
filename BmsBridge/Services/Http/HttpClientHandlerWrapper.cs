@@ -2,6 +2,7 @@ public class HttpClientHandlerWrapper : IRequestHandler, IDisposable
 {
     private readonly HttpClient _client;
     private readonly HttpMessageHandler _handler;
+    private bool _disposed;
 
     public HttpClientHandlerWrapper(string? socks5Proxy = null)
     {
@@ -21,7 +22,12 @@ public class HttpClientHandlerWrapper : IRequestHandler, IDisposable
 
     public void Dispose()
     {
+        if (_disposed)
+            return;
+
         _client.Dispose();
         _handler.Dispose();
+
+        _disposed = true;
     }
 }

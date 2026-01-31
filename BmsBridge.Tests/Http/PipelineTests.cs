@@ -189,4 +189,25 @@ public class PipelineTests
 
         Console.WriteLine($"Timeout triggered after {sw.Elapsed.TotalMilliseconds}ms");
     }
+
+    [Fact]
+    public void Pipeline_CanBeDisposed()
+    {
+        var pipeline = HttpPipelineFactory.Create(
+            throttleDelay: TimeSpan.FromMilliseconds(10),
+            enableRetries: false,
+            retryCount: 0,
+            socks5Proxy: null
+        );
+
+        try
+        {
+            pipeline.Dispose();
+            Assert.True(true);
+        }
+        catch
+        {
+            Assert.True(false);
+        }
+    }
 }

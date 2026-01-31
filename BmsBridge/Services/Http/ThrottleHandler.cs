@@ -31,4 +31,9 @@ public class ThrottleHandler : IRequestHandler
             _lock.Release();
         }
     }
+
+    public void Dispose()
+    {
+        _next.Dispose();
+    }
 }

@@ -1,4 +1,4 @@
-public interface IRequestHandler
+public interface IRequestHandler : IDisposable
 {
     Task<HttpResponseMessage> SendAsync(
         HttpRequestMessage request,
