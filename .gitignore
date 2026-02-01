@@ -10,6 +10,7 @@ out/
 # User-specific files
 *.user
 *.suo
+Context.txt
 
 # Settings files
 appsettings*
@@ -41,3 +42,6 @@ coverage/
 
 # Publish output
 publish/
+
+# Replay data
+ReplayData/

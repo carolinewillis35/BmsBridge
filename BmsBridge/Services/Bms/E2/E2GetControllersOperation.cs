@@ -1,33 +1,61 @@
 using System.Text.Json.Nodes;
-using System.Text;
 
 public sealed class E2GetControllerListOperation : E2BaseDeviceOperation
 {
     public override string Name => "E2.GetControllerList";
 
-    /// <summary>
-    /// Raw JSON returned by the controller. 
-    /// Useful for debugging before writing a real parser.
-    /// </summary>
-    public string? RawJson { get; private set; }
+    public IReadOnlyList<E2ControllerInfo>? Controllers { get; private set; }
+    public E2ControllerInfo? PrimaryController => Controllers?.FirstOrDefault();
 
     public E2GetControllerListOperation(Uri endpoint)
         : base(endpoint)
     {
     }
 
-    public override async Task ExecuteAsync(HttpPipelineExecutor executor, CancellationToken ct)
+    public sealed class E2ControllerInfo
     {
-        // Build the JSON-RPC style request with no parameters
-        var request = BuildRequest(Name);
+        public string Name { get; init; } = "";
+        public int Type { get; init; }
+        public string Model { get; init; } = "";
+        public string Revision { get; init; } = "";
+        public int Subnet { get; init; }
+        public int Node { get; init; }
+    }
 
-        // Send it through the pipeline
-        var response = await executor.SendAsync(request, ct);
+    protected override async Task ParseAsync(HttpResponseMessage response, CancellationToken ct)
+    {
+        var json = JsonNode.Parse(await response.Content.ReadAsStringAsync(ct));
 
-        // Read the raw JSON for debugging
-        RawJson = await response.Content.ReadAsStringAsync(ct);
+        var resultArray = json?["result"] as JsonArray;
 
-        // For now, just print it (or log it)
-        Console.WriteLine($"[E2.GetControllerList] Raw response: {RawJson}");
+        if (resultArray == null)
+        {
+            Controllers = Array.Empty<E2ControllerInfo>();
+            return;
+        }
+
+        var list = new List<E2ControllerInfo>();
+
+        foreach (var item in resultArray)
+        {
+            if (item is not JsonObject obj)
+                continue;
+
+            var info = new E2ControllerInfo
+            {
+                Name = obj["name"]?.ToString() ?? "",
+                Type = obj["type"]?.GetValue<int>() ?? 0,
+                Model = obj["model"]?.ToString() ?? "",
+                Revision = obj["revision"]?.ToString() ?? "",
+                Subnet = obj["subnet"]?.GetValue<int>() ?? 0,
+                Node = obj["node"]?.GetValue<int>() ?? 0
+            };
+
+            list.Add(info);
+        }
+
+        Controllers = list;
+
+        ExportObject = PrimaryController;
     }
 }

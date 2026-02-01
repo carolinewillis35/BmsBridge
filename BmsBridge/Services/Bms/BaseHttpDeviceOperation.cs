@@ -1,8 +1,12 @@
+using System.Text.Json.Nodes;
+using System.Text.Json;
+
 public abstract class BaseDeviceOperation : IDeviceOperation
 {
     public abstract string Name { get; }
 
     protected readonly Uri Endpoint;
+    protected object? ExportObject { get; set; }
 
     protected BaseDeviceOperation(Uri endpoint)
     {
@@ -24,11 +28,26 @@ public abstract class BaseDeviceOperation : IDeviceOperation
         }
     }
 
+    protected abstract Task ParseAsync(HttpResponseMessage response, CancellationToken ct);
+
     protected abstract HttpRequestMessage BuildRequest();
 
-    public virtual Task ExecuteAsync(HttpPipelineExecutor executor, CancellationToken ct)
+    public virtual async Task ExecuteAsync(IHttpPipelineExecutor executor, CancellationToken ct)
     {
         var request = BuildRequest();
-        return executor.SendAsync(request, ct);
+        var response = await executor.SendAsync(request, ct, Name);
+        await ParseAsync(response, ct);
+    }
+
+    public virtual JsonNode? ToJson()
+    {
+        if (ExportObject is null)
+            return null;
+
+        var json = JsonSerializer.SerializeToNode(ExportObject);
+        return new JsonObject
+        {
+            ["data"] = json
+        };
     }
 }

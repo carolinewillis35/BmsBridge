@@ -40,12 +40,12 @@ if (args.Contains("--test-e2"))
 
     await op.ExecuteAsync(executor, CancellationToken.None);
 
-    Console.WriteLine("Raw response:");
-    Console.WriteLine(op.RawJson);
+    // Console.WriteLine("Raw response:");
+    // Console.WriteLine(op.RawJson);
 
     // Save replay
     Directory.CreateDirectory("ReplayData");
-    File.WriteAllText("ReplayData/E2.GetControllerList.txt", op.RawJson ?? "");
+    // File.WriteAllText("ReplayData/E2.GetControllerList.txt", op.RawJson ?? "");
 
     return;
 }

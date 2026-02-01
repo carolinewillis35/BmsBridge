@@ -1,6 +1,6 @@
 using System.Runtime.InteropServices;
 
-public sealed class HttpPipelineExecutor : IDisposable
+public sealed class HttpPipelineExecutor : IHttpPipelineExecutor, IDisposable
 {
     private readonly object _lock = new();
     private readonly GeneralSettings _settings;
@@ -45,7 +45,8 @@ public sealed class HttpPipelineExecutor : IDisposable
 
     public async Task<HttpResponseMessage> SendAsync(
         HttpRequestMessage request,
-        CancellationToken ct)
+        CancellationToken ct,
+        string? Name = null)
     {
         ThrowIfDisposed();
 
