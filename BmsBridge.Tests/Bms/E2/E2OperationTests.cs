@@ -23,7 +23,7 @@ public class E2OperationTests
         var json = op.ToJson();
         Assert.NotNull(json);
 
-        // Pretty-print the JSON for debugging
+        // // Pretty-print the JSON for debugging
         // try
         // {
         //     // var parsed = JsonNode.Parse(json);
@@ -68,6 +68,16 @@ public class E2OperationTests
         await RunOperationAsync(
             "E2.GetAlarmList",
             () => new E2GetAlarmListOperation(endpoint, "fake")
+        );
+    }
+
+    [Fact]
+    public async Task E2GetPoints_Works()
+    {
+        var fakeList = new List<(int, string)> { (1, "fake") };
+        await RunOperationAsync(
+            "E2.GetAlarmList",
+            () => new E2GetPointsOperation(endpoint, "fake", "fake", fakeList)
         );
     }
 }

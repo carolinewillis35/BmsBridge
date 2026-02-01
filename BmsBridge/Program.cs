@@ -37,7 +37,11 @@ if (args.Contains("--test-operator"))
     var executor = new HttpPipelineExecutor(settings);
 
     // var op = new E2GetControllerListOperation(endpoint);
-    var op = new E2GetAlarmListOperation(endpoint, "HVAC/LTS");
+    // var op = new E2GetAlarmListOperation(endpoint, "HVAC/LTS");
+
+    var loader = new EmbeddedE2IndexMappingProvider();
+
+    var op = new E2GetPointsOperation(endpoint, "HVAC/LTS", "AC1 FAN", loader.GetPointsForCellType(33));
 
     await op.ExecuteAsync(executor, CancellationToken.None);
 

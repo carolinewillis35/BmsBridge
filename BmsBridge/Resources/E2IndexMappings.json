@@ -1,0 +1,2738 @@
+[
+  {
+    "CellType": 425,
+    "Name": "OA DAMPER %",
+    "Index": 2098
+  },
+  {
+    "CellType": 97,
+    "Name": "PRESSURE IN",
+    "Index": 3
+  },
+  {
+    "CellType": 134,
+    "Name": "OCC STATE",
+    "Index": 2069
+  },
+  {
+    "CellType": 129,
+    "Name": "DROPLEG PRES",
+    "Index": 78
+  },
+  {
+    "CellType": 170,
+    "Name": "E2 DEWPT",
+    "Index": 2073
+  },
+  {
+    "CellType": 425,
+    "Name": "COMP 1 STAT %",
+    "Index": 2087
+  },
+  {
+    "CellType": 129,
+    "Name": "FAN OUT8",
+    "Index": 2059
+  },
+  {
+    "CellType": 129,
+    "Name": "DISCHARGE OUT",
+    "Index": 2101
+  },
+  {
+    "CellType": 135,
+    "Name": "ZONE HUM OUT",
+    "Index": 2049
+  },
+  {
+    "CellType": 66,
+    "Name": "DIG INPUT15",
+    "Index": 17
+  },
+  {
+    "CellType": 67,
+    "Name": "DI6",
+    "Index": 14
+  },
+  {
+    "CellType": 129,
+    "Name": "FAN PROOF IN11",
+    "Index": 19
+  },
+  {
+    "CellType": 129,
+    "Name": "FST REC VAL OUT",
+    "Index": 2098
+  },
+  {
+    "CellType": 162,
+    "Name": "STAGE STATUS4",
+    "Index": 2141
+  },
+  {
+    "CellType": 171,
+    "Name": "POWER FACTOR",
+    "Index": 2129
+  },
+  {
+    "CellType": 425,
+    "Name": "COND FAN 6",
+    "Index": 2109
+  },
+  {
+    "CellType": 134,
+    "Name": "SPACE HUMID",
+    "Index": 7
+  },
+  {
+    "CellType": 425,
+    "Name": "REHEAT1 ACTIVE",
+    "Index": 2102
+  },
+  {
+    "CellType": 67,
+    "Name": "DO2",
+    "Index": 2054
+  },
+  {
+    "CellType": 162,
+    "Name": "STAGE STATUS1",
+    "Index": 2138
+  },
+  {
+    "CellType": 425,
+    "Name": "UNOCC DEWPT SP",
+    "Index": 7138
+  },
+  {
+    "CellType": 67,
+    "Name": "DI8",
+    "Index": 16
+  },
+  {
+    "CellType": 158,
+    "Name": "VALVE % 6",
+    "Index": 6
+  },
+  {
+    "CellType": 2,
+    "Name": "OUTPUT",
+    "Index": 2048
+  },
+  {
+    "CellType": 129,
+    "Name": "FAN PROOF IN8",
+    "Index": 16
+  },
+  {
+    "CellType": 142,
+    "Name": "FAN RUN PCT",
+    "Index": 2075
+  },
+  {
+    "CellType": 425,
+    "Name": "COMP 2 STAT",
+    "Index": 2089
+  },
+  {
+    "CellType": 66,
+    "Name": "DIG INPUT7",
+    "Index": 9
+  },
+  {
+    "CellType": 134,
+    "Name": "FAN FAILED",
+    "Index": 2073
+  },
+  {
+    "CellType": 162,
+    "Name": "STAGE STATUS5",
+    "Index": 2142
+  },
+  {
+    "CellType": 131,
+    "Name": "PRODUCT TEMP 5",
+    "Index": 33
+  },
+  {
+    "CellType": 169,
+    "Name": "ACTIVE SP",
+    "Index": 2052
+  },
+  {
+    "CellType": 67,
+    "Name": "DI4",
+    "Index": 12
+  },
+  {
+    "CellType": 342,
+    "Name": "CONCENTRATION2",
+    "Index": 2049
+  },
+  {
+    "CellType": 342,
+    "Name": "CONCENTRATION14",
+    "Index": 2061
+  },
+  {
+    "CellType": 98,
+    "Name": "ALL LIGHTS ON",
+    "Index": 15
+  },
+  {
+    "CellType": 129,
+    "Name": "Number of Fans",
+    "Index": 7001
+  },
+  {
+    "CellType": 425,
+    "Name": "RECLAIM1 ACTIVE",
+    "Index": 2100
+  },
+  {
+    "CellType": 131,
+    "Name": "PRODUCT TEMP 6",
+    "Index": 34
+  },
+  {
+    "CellType": 131,
+    "Name": "DEFROST",
+    "Index": 2054
+  },
+  {
+    "CellType": 131,
+    "Name": "CASE ALM LO SP",
+    "Index": 2071
+  },
+  {
+    "CellType": 342,
+    "Name": "CONCENTRATION5",
+    "Index": 2052
+  },
+  {
+    "CellType": 94,
+    "Name": "CUTOUT",
+    "Index": 16
+  },
+  {
+    "CellType": 162,
+    "Name": "FLT TARGET TEMP",
+    "Index": 92
+  },
+  {
+    "CellType": 371,
+    "Name": "COMP C SUC PSI",
+    "Index": 2059
+  },
+  {
+    "CellType": 66,
+    "Name": "Num Inputs",
+    "Index": 7004
+  },
+  {
+    "CellType": 425,
+    "Name": "SPACE TEMP",
+    "Index": 2051
+  },
+  {
+    "CellType": 162,
+    "Name": "RACK FAIL",
+    "Index": 2089
+  },
+  {
+    "CellType": 131,
+    "Name": "CASE TEMP 12",
+    "Index": 41
+  },
+  {
+    "CellType": 131,
+    "Name": "PRODUCT TEMP 8",
+    "Index": 43
+  },
+  {
+    "CellType": 129,
+    "Name": "CONTROL METHOD",
+    "Index": 2102
+  },
+  {
+    "CellType": 131,
+    "Name": "CASE TEMP 2",
+    "Index": 4
+  },
+  {
+    "CellType": 131,
+    "Name": "CASE ALM OUT 5",
+    "Index": 2067
+  },
+  {
+    "CellType": 94,
+    "Name": "CUTIN",
+    "Index": 14
+  },
+  {
+    "CellType": 425,
+    "Name": "SUPPLY AIR TEMP",
+    "Index": 2056
+  },
+  {
+    "CellType": 425,
+    "Name": "COND FAN 5",
+    "Index": 2108
+  },
+  {
+    "CellType": 66,
+    "Name": "DIG INPUT12",
+    "Index": 14
+  },
+  {
+    "CellType": 98,
+    "Name": "DAY SCHED IN",
+    "Index": 22
+  },
+  {
+    "CellType": 66,
+    "Name": "INVERT OUTPUT",
+    "Index": 20
+  },
+  {
+    "CellType": 67,
+    "Name": "AI2",
+    "Index": 2
+  },
+  {
+    "CellType": 134,
+    "Name": "SPACE TEMP 1",
+    "Index": 6
+  },
+  {
+    "CellType": 171,
+    "Name": "CAPCITY REQ IN",
+    "Index": 7
+  },
+  {
+    "CellType": 371,
+    "Name": "COMP B SUC PSI",
+    "Index": 2058
+  },
+  {
+    "CellType": 425,
+    "Name": "UNOCC HEAT SP",
+    "Index": 7136
+  },
+  {
+    "CellType": 98,
+    "Name": "IN BYPASS",
+    "Index": 2053
+  },
+  {
+    "CellType": 103,
+    "Name": "DIG INPUT 1",
+    "Index": 2048
+  },
+  {
+    "CellType": 80,
+    "Name": "OUTPUT",
+    "Index": 2048
+  },
+  {
+    "CellType": 87,
+    "Name": "DAILY TOTAL",
+    "Index": 2056
+  },
+  {
+    "CellType": 139,
+    "Name": "DISCHARGE AIR1",
+    "Index": 2067
+  },
+  {
+    "CellType": 169,
+    "Name": "VALVE PCT",
+    "Index": 2054
+  },
+  {
+    "CellType": 371,
+    "Name": "OAT",
+    "Index": 2048
+  },
+  {
+    "CellType": 425,
+    "Name": "HEAT STAGE 2",
+    "Index": 2093
+  },
+  {
+    "CellType": 82,
+    "Name": "COMP RUN IN",
+    "Index": 1
+  },
+  {
+    "CellType": 162,
+    "Name": "STAGE STATUS9",
+    "Index": 2146
+  },
+  {
+    "CellType": 131,
+    "Name": "PRODUCT TEMP 10",
+    "Index": 45
+  },
+  {
+    "CellType": 131,
+    "Name": "EEPR VALVE",
+    "Index": 2051
+  },
+  {
+    "CellType": 131,
+    "Name": "CASE TEMP 8",
+    "Index": 37
+  },
+  {
+    "CellType": 66,
+    "Name": "OUTPUT",
+    "Index": 2048
+  },
+  {
+    "CellType": 94,
+    "Name": "INPUT2",
+    "Index": 19
+  },
+  {
+    "CellType": 94,
+    "Name": "INPUT3",
+    "Index": 20
+  },
+  {
+    "CellType": 142,
+    "Name": "COOL4",
+    "Index": 2057
+  },
+  {
+    "CellType": 169,
+    "Name": "TERM TEMP",
+    "Index": 2053
+  },
+  {
+    "CellType": 129,
+    "Name": "FAN OUT6",
+    "Index": 2057
+  },
+  {
+    "CellType": 139,
+    "Name": "TERM TEMP",
+    "Index": 2065
+  },
+  {
+    "CellType": 171,
+    "Name": "DSCH TEMP OUT",
+    "Index": 2050
+  },
+  {
+    "CellType": 96,
+    "Name": "LOGIC IN3",
+    "Index": 15
+  },
+  {
+    "CellType": 139,
+    "Name": "DISCHARGE AIR2",
+    "Index": 2068
+  },
+  {
+    "CellType": 158,
+    "Name": "VALVE % 8",
+    "Index": 8
+  },
+  {
+    "CellType": 169,
+    "Name": "CASE TEMP SP",
+    "Index": 8
+  },
+  {
+    "CellType": 343,
+    "Name": "COMP RUNNING",
+    "Index": 2054
+  },
+  {
+    "CellType": 425,
+    "Name": "RECLAIM2 ACTIVE",
+    "Index": 2101
+  },
+  {
+    "CellType": 129,
+    "Name": "FAN OUT7",
+    "Index": 2058
+  },
+  {
+    "CellType": 162,
+    "Name": "STAGE OUT1",
+    "Index": 2048
+  },
+  {
+    "CellType": 162,
+    "Name": "TOTAL STAGES",
+    "Index": 2129
+  },
+  {
+    "CellType": 131,
+    "Name": "CASE ALM OUT 6",
+    "Index": 2068
+  },
+  {
+    "CellType": 66,
+    "Name": "DIG INPUT14",
+    "Index": 16
+  },
+  {
+    "CellType": 129,
+    "Name": "FAN PROOF IN2",
+    "Index": 10
+  },
+  {
+    "CellType": 142,
+    "Name": "Num Heat Stages",
+    "Index": 7099
+  },
+  {
+    "CellType": 162,
+    "Name": "COMP DIG OIL9",
+    "Index": 17
+  },
+  {
+    "CellType": 132,
+    "Name": "TEMPERATURE",
+    "Index": 4
+  },
+  {
+    "CellType": 169,
+    "Name": "DISCH 3",
+    "Index": 2062
+  },
+  {
+    "CellType": 66,
+    "Name": "DIG INPUT16",
+    "Index": 18
+  },
+  {
+    "CellType": 67,
+    "Name": "DI7",
+    "Index": 15
+  },
+  {
+    "CellType": 162,
+    "Name": "COMP DIG OIL13",
+    "Index": 21
+  },
+  {
+    "CellType": 162,
+    "Name": "SUCT TEMP SETPT",
+    "Index": 8
+  },
+  {
+    "CellType": 342,
+    "Name": "ZER PKPK",
+    "Index": 2067
+  },
+  {
+    "CellType": 162,
+    "Name": "STAGE OUT2",
+    "Index": 2049
+  },
+  {
+    "CellType": 162,
+    "Name": "STAGE STATUS6",
+    "Index": 2143
+  },
+  {
+    "CellType": 134,
+    "Name": "FAN PROOF IN",
+    "Index": 15
+  },
+  {
+    "CellType": 162,
+    "Name": "SUCTION STEPUP",
+    "Index": 3
+  },
+  {
+    "CellType": 162,
+    "Name": "COMP PROOF2",
+    "Index": 42
+  },
+  {
+    "CellType": 162,
+    "Name": "STAGE OUT13",
+    "Index": 2060
+  },
+  {
+    "CellType": 131,
+    "Name": "ALARM OUT",
+    "Index": 2058
+  },
+  {
+    "CellType": 129,
+    "Name": "FAN PROOF IN1",
+    "Index": 9
+  },
+  {
+    "CellType": 169,
+    "Name": "AntiSwt HI Stpt",
+    "Index": 7010
+  },
+  {
+    "CellType": 342,
+    "Name": "AMBIENT PRES",
+    "Index": 2070
+  },
+  {
+    "CellType": 66,
+    "Name": "DIG INPUT10",
+    "Index": 12
+  },
+  {
+    "CellType": 162,
+    "Name": "SAT SUCT TEMP",
+    "Index": 2090
+  },
+  {
+    "CellType": 97,
+    "Name": "Conversion Type",
+    "Index": 7000
+  },
+  {
+    "CellType": 169,
+    "Name": "CASE TEMP",
+    "Index": 2051
+  },
+  {
+    "CellType": 67,
+    "Name": "AI4",
+    "Index": 4
+  },
+  {
+    "CellType": 142,
+    "Name": "COOL RUN PCT1",
+    "Index": 2076
+  },
+  {
+    "CellType": 142,
+    "Name": "HEAT RUN PCT4",
+    "Index": 2083
+  },
+  {
+    "CellType": 425,
+    "Name": "HEAT STAGE 4",
+    "Index": 2095
+  },
+  {
+    "CellType": 431,
+    "Name": "MOTOR_FLA",
+    "Index": 7128
+  },
+  {
+    "CellType": 134,
+    "Name": "OCCUPANCY",
+    "Index": 2
+  },
+  {
+    "CellType": 134,
+    "Name": "VS FAN OUTPUT",
+    "Index": 2077
+  },
+  {
+    "CellType": 131,
+    "Name": "CASE TEMP 7",
+    "Index": 36
+  },
+  {
+    "CellType": 171,
+    "Name": "COMP RUN OUT",
+    "Index": 2048
+  },
+  {
+    "CellType": 371,
+    "Name": "COMD D SUC PSI",
+    "Index": 2060
+  },
+  {
+    "CellType": 425,
+    "Name": "SPLY FAN STAT %",
+    "Index": 2084
+  },
+  {
+    "CellType": 425,
+    "Name": "MIXED AIR TEMP",
+    "Index": 2061
+  },
+  {
+    "CellType": 82,
+    "Name": "POWER FACTOR",
+    "Index": 2091
+  },
+  {
+    "CellType": 142,
+    "Name": "COOL3",
+    "Index": 2056
+  },
+  {
+    "CellType": 142,
+    "Name": "SUPPLY TEMP",
+    "Index": 2068
+  },
+  {
+    "CellType": 162,
+    "Name": "COMP PROOF13",
+    "Index": 53
+  },
+  {
+    "CellType": 131,
+    "Name": "Defrost Time 1",
+    "Index": 7026
+  },
+  {
+    "CellType": 67,
+    "Name": "AO2",
+    "Index": 2050
+  },
+  {
+    "CellType": 129,
+    "Name": "FAN OUT10",
+    "Index": 2061
+  },
+  {
+    "CellType": 425,
+    "Name": "OUTDR HUMIDITY",
+    "Index": 2126
+  },
+  {
+    "CellType": 98,
+    "Name": "BYPASS ON",
+    "Index": 13
+  },
+  {
+    "CellType": 142,
+    "Name": "SPACE TEMP",
+    "Index": 2067
+  },
+  {
+    "CellType": 142,
+    "Name": "COOL RUN PCT4",
+    "Index": 2079
+  },
+  {
+    "CellType": 162,
+    "Name": "STAGE OUT9",
+    "Index": 2056
+  },
+  {
+    "CellType": 67,
+    "Name": "DI2",
+    "Index": 10
+  },
+  {
+    "CellType": 96,
+    "Name": "LOGIC IN1",
+    "Index": 13
+  },
+  {
+    "CellType": 129,
+    "Name": "MIN TEMP STPT",
+    "Index": 65
+  },
+  {
+    "CellType": 132,
+    "Name": "OUTPUT",
+    "Index": 2048
+  },
+  {
+    "CellType": 158,
+    "Name": "VALVE % 7",
+    "Index": 7
+  },
+  {
+    "CellType": 162,
+    "Name": "Refrigerant",
+    "Index": 7002
+  },
+  {
+    "CellType": 131,
+    "Name": "CASE TEMP STPT",
+    "Index": 9
+  },
+  {
+    "CellType": 342,
+    "Name": "CONCENTRATION15",
+    "Index": 2062
+  },
+  {
+    "CellType": 66,
+    "Name": "DIG INPUT3",
+    "Index": 5
+  },
+  {
+    "CellType": 142,
+    "Name": "ECONOMIZE",
+    "Index": 12
+  },
+  {
+    "CellType": 162,
+    "Name": "COMP PROOF7",
+    "Index": 47
+  },
+  {
+    "CellType": 131,
+    "Name": "CASE TEMP 5",
+    "Index": 7
+  },
+  {
+    "CellType": 169,
+    "Name": "ANTISWEAT PCT",
+    "Index": 2057
+  },
+  {
+    "CellType": 67,
+    "Name": "DO4",
+    "Index": 2056
+  },
+  {
+    "CellType": 129,
+    "Name": "SHUT DOWN",
+    "Index": 8
+  },
+  {
+    "CellType": 142,
+    "Name": "CONTROL TEMP",
+    "Index": 2074
+  },
+  {
+    "CellType": 162,
+    "Name": "FLOAT ENABLE",
+    "Index": 64
+  },
+  {
+    "CellType": 131,
+    "Name": "CASE ALM OUT 3",
+    "Index": 2065
+  },
+  {
+    "CellType": 67,
+    "Name": "AO1",
+    "Index": 2049
+  },
+  {
+    "CellType": 131,
+    "Name": "PRODUCT TEMP 12",
+    "Index": 47
+  },
+  {
+    "CellType": 342,
+    "Name": "VACUUM PRES",
+    "Index": 2069
+  },
+  {
+    "CellType": 129,
+    "Name": "FAN OUT5",
+    "Index": 2056
+  },
+  {
+    "CellType": 134,
+    "Name": "WINTER COOL OCC",
+    "Index": 24
+  },
+  {
+    "CellType": 139,
+    "Name": "DISCHARGE AIR4",
+    "Index": 2070
+  },
+  {
+    "CellType": 162,
+    "Name": "PHASE LOSS",
+    "Index": 59
+  },
+  {
+    "CellType": 425,
+    "Name": "HEAT MODE",
+    "Index": 2050
+  },
+  {
+    "CellType": 129,
+    "Name": "LIQUID LEVEL",
+    "Index": 74
+  },
+  {
+    "CellType": 142,
+    "Name": "HEAT RUN PCT1",
+    "Index": 2080
+  },
+  {
+    "CellType": 162,
+    "Name": "STAGE STATUS13",
+    "Index": 2150
+  },
+  {
+    "CellType": 343,
+    "Name": "TOTAL STARTS",
+    "Index": 2094
+  },
+  {
+    "CellType": 132,
+    "Name": "DEWPOINT OUT",
+    "Index": 2049
+  },
+  {
+    "CellType": 142,
+    "Name": "HEAT4",
+    "Index": 2053
+  },
+  {
+    "CellType": 142,
+    "Name": "OUTDOOR TEMP",
+    "Index": 4
+  },
+  {
+    "CellType": 425,
+    "Name": "DEHUM MODE",
+    "Index": 2048
+  },
+  {
+    "CellType": 425,
+    "Name": "CO2 LEVEL",
+    "Index": 2062
+  },
+  {
+    "CellType": 142,
+    "Name": "OA DAMPER POS",
+    "Index": 24
+  },
+  {
+    "CellType": 162,
+    "Name": "COMP DIG OIL11",
+    "Index": 19
+  },
+  {
+    "CellType": 162,
+    "Name": "CUR TEMP SETPT",
+    "Index": 2095
+  },
+  {
+    "CellType": 425,
+    "Name": "COMP CAPACITY%",
+    "Index": 2085
+  },
+  {
+    "CellType": 66,
+    "Name": "DIG INPUT11",
+    "Index": 13
+  },
+  {
+    "CellType": 158,
+    "Name": "VALVE % 4",
+    "Index": 4
+  },
+  {
+    "CellType": 66,
+    "Name": "DIG INPUT1",
+    "Index": 3
+  },
+  {
+    "CellType": 142,
+    "Name": "Num Cool Stages",
+    "Index": 7100
+  },
+  {
+    "CellType": 131,
+    "Name": "DUAL TEMP STPT",
+    "Index": 10
+  },
+  {
+    "CellType": 425,
+    "Name": "HEAT STAGE 3",
+    "Index": 2094
+  },
+  {
+    "CellType": 67,
+    "Name": "AO3",
+    "Index": 2051
+  },
+  {
+    "CellType": 129,
+    "Name": "FAN OUT11",
+    "Index": 2062
+  },
+  {
+    "CellType": 129,
+    "Name": "VS RPM",
+    "Index": 2076
+  },
+  {
+    "CellType": 162,
+    "Name": "STAGE STATUS7",
+    "Index": 2144
+  },
+  {
+    "CellType": 96,
+    "Name": "COMMAND OUT",
+    "Index": 2048
+  },
+  {
+    "CellType": 134,
+    "Name": "Fan Type",
+    "Index": 7047
+  },
+  {
+    "CellType": 371,
+    "Name": "AUX HT STG 2",
+    "Index": 2075
+  },
+  {
+    "CellType": 371,
+    "Name": "COMP C DS PSI",
+    "Index": 2055
+  },
+  {
+    "CellType": 129,
+    "Name": "DISCH TRIP IN",
+    "Index": 4
+  },
+  {
+    "CellType": 131,
+    "Name": "PRODUCT TEMP 4",
+    "Index": 32
+  },
+  {
+    "CellType": 425,
+    "Name": "SUC PSI SP GP 1",
+    "Index": 2110
+  },
+  {
+    "CellType": 134,
+    "Name": "WINTER HEAT UOC",
+    "Index": 23
+  },
+  {
+    "CellType": 131,
+    "Name": "CASE TEMP 10",
+    "Index": 39
+  },
+  {
+    "CellType": 103,
+    "Name": "RELAY OUT 1",
+    "Index": 1
+  },
+  {
+    "CellType": 162,
+    "Name": "COMP DIG OIL10",
+    "Index": 18
+  },
+  {
+    "CellType": 134,
+    "Name": "Control Type",
+    "Index": 7000
+  },
+  {
+    "CellType": 169,
+    "Name": "Disch 4 Offs",
+    "Index": 7087
+  },
+  {
+    "CellType": 129,
+    "Name": "FAN OUT9",
+    "Index": 2060
+  },
+  {
+    "CellType": 162,
+    "Name": "COMP PROOF12",
+    "Index": 52
+  },
+  {
+    "CellType": 162,
+    "Name": "SUBCOOLER",
+    "Index": 2067
+  },
+  {
+    "CellType": 131,
+    "Name": "Defrost Time 3",
+    "Index": 7028
+  },
+  {
+    "CellType": 66,
+    "Name": "DIG INPUT8",
+    "Index": 10
+  },
+  {
+    "CellType": 158,
+    "Name": "VALVE % 1",
+    "Index": 1
+  },
+  {
+    "CellType": 162,
+    "Name": "COMP DIG OIL1",
+    "Index": 9
+  },
+  {
+    "CellType": 162,
+    "Name": "STAGE OUT10",
+    "Index": 2057
+  },
+  {
+    "CellType": 342,
+    "Name": "AVERAGE PKPK",
+    "Index": 2066
+  },
+  {
+    "CellType": 371,
+    "Name": "SUPPLY DEWPOINT",
+    "Index": 2080
+  },
+  {
+    "CellType": 94,
+    "Name": "BYPASS VALUE",
+    "Index": 5
+  },
+  {
+    "CellType": 129,
+    "Name": "FAN PROOF IN3",
+    "Index": 11
+  },
+  {
+    "CellType": 162,
+    "Name": "STAGE OUT5",
+    "Index": 2052
+  },
+  {
+    "CellType": 342,
+    "Name": "CONCENTRATION6",
+    "Index": 2053
+  },
+  {
+    "CellType": 134,
+    "Name": "Dehumidify By",
+    "Index": 7013
+  },
+  {
+    "CellType": 142,
+    "Name": "COOL2",
+    "Index": 2055
+  },
+  {
+    "CellType": 342,
+    "Name": "CONCENTRATION3",
+    "Index": 2050
+  },
+  {
+    "CellType": 371,
+    "Name": "SUPPLY FN FAULT",
+    "Index": 2063
+  },
+  {
+    "CellType": 142,
+    "Name": "HEAT RUN PCT3",
+    "Index": 2082
+  },
+  {
+    "CellType": 162,
+    "Name": "CUR PRES SETPT",
+    "Index": 2094
+  },
+  {
+    "CellType": 342,
+    "Name": "CONCENTRATION12",
+    "Index": 2059
+  },
+  {
+    "CellType": 431,
+    "Name": "MOTOR_PWR_FACTR",
+    "Index": 7132
+  },
+  {
+    "CellType": 94,
+    "Name": "INPUT1",
+    "Index": 18
+  },
+  {
+    "CellType": 98,
+    "Name": "LIGHTS OUTPUT",
+    "Index": 2048
+  },
+  {
+    "CellType": 1,
+    "Name": "OUTPUT",
+    "Index": 2048
+  },
+  {
+    "CellType": 139,
+    "Name": "DOOR STATE",
+    "Index": 2054
+  },
+  {
+    "CellType": 171,
+    "Name": "SAT SUCT TEMP",
+    "Index": 10
+  },
+  {
+    "CellType": 371,
+    "Name": "SUPPLY TEMP",
+    "Index": 2050
+  },
+  {
+    "CellType": 65,
+    "Name": "OUTPUT",
+    "Index": 2048
+  },
+  {
+    "CellType": 129,
+    "Name": "REFRIG TEMP OUT",
+    "Index": 2100
+  },
+  {
+    "CellType": 96,
+    "Name": "NUM INPUTS ON",
+    "Index": 2060
+  },
+  {
+    "CellType": 342,
+    "Name": "CONCENTRATION4",
+    "Index": 2051
+  },
+  {
+    "CellType": 162,
+    "Name": "COMP DIG OIL4",
+    "Index": 12
+  },
+  {
+    "CellType": 425,
+    "Name": "INDR HUMIDITY",
+    "Index": 2125
+  },
+  {
+    "CellType": 129,
+    "Name": "AMB SPLIT STPT",
+    "Index": 40
+  },
+  {
+    "CellType": 86,
+    "Name": "PRESENT KW",
+    "Index": 2049
+  },
+  {
+    "CellType": 162,
+    "Name": "COMP PROOF3",
+    "Index": 43
+  },
+  {
+    "CellType": 169,
+    "Name": "Ref Leak Detect",
+    "Index": 7045
+  },
+  {
+    "CellType": 132,
+    "Name": "REL HUMIDITY",
+    "Index": 5
+  },
+  {
+    "CellType": 131,
+    "Name": "CASE TEMP 3",
+    "Index": 5
+  },
+  {
+    "CellType": 425,
+    "Name": "RA DAMPER %",
+    "Index": 2096
+  },
+  {
+    "CellType": 129,
+    "Name": "AMB TEMP IN",
+    "Index": 5
+  },
+  {
+    "CellType": 371,
+    "Name": "AUX HT STG 3",
+    "Index": 2076
+  },
+  {
+    "CellType": 67,
+    "Name": "AI3",
+    "Index": 3
+  },
+  {
+    "CellType": 94,
+    "Name": "INPUT SELECT",
+    "Index": 22
+  },
+  {
+    "CellType": 129,
+    "Name": "FAN PROOF IN9",
+    "Index": 17
+  },
+  {
+    "CellType": 134,
+    "Name": "VS INVTR FAIL",
+    "Index": 2074
+  },
+  {
+    "CellType": 425,
+    "Name": "RETURN AIR TEMP",
+    "Index": 2053
+  },
+  {
+    "CellType": 87,
+    "Name": "DAILY PEAK",
+    "Index": 2059
+  },
+  {
+    "CellType": 162,
+    "Name": "DISCHARGE PRES",
+    "Index": 7
+  },
+  {
+    "CellType": 135,
+    "Name": "ACTIVE CL STPT",
+    "Index": 2062
+  },
+  {
+    "CellType": 139,
+    "Name": "LIGHT STATE",
+    "Index": 2049
+  },
+  {
+    "CellType": 131,
+    "Name": "FAN",
+    "Index": 2056
+  },
+  {
+    "CellType": 371,
+    "Name": "COMP B",
+    "Index": 2071
+  },
+  {
+    "CellType": 425,
+    "Name": "OCC DEPT SP",
+    "Index": 7137
+  },
+  {
+    "CellType": 142,
+    "Name": "UNOCC COOL",
+    "Index": 9
+  },
+  {
+    "CellType": 97,
+    "Name": "TEMP OUT",
+    "Index": 2051
+  },
+  {
+    "CellType": 425,
+    "Name": "COND FAN 4",
+    "Index": 2107
+  },
+  {
+    "CellType": 162,
+    "Name": "COMP DIG OIL6",
+    "Index": 14
+  },
+  {
+    "CellType": 162,
+    "Name": "STAGE OUT14",
+    "Index": 2061
+  },
+  {
+    "CellType": 131,
+    "Name": "Defrost Time 6",
+    "Index": 7031
+  },
+  {
+    "CellType": 131,
+    "Name": "CASE TEMP 6",
+    "Index": 8
+  },
+  {
+    "CellType": 162,
+    "Name": "COMP PROOF14",
+    "Index": 54
+  },
+  {
+    "CellType": 162,
+    "Name": "STAGE STATUS15",
+    "Index": 2152
+  },
+  {
+    "CellType": 131,
+    "Name": "Defrost Time 5",
+    "Index": 7030
+  },
+  {
+    "CellType": 131,
+    "Name": "PRODUCT TEMP 2",
+    "Index": 30
+  },
+  {
+    "CellType": 169,
+    "Name": "Disch 2 Offs",
+    "Index": 7083
+  },
+  {
+    "CellType": 171,
+    "Name": "SAT TEMP OUT",
+    "Index": 2051
+  },
+  {
+    "CellType": 342,
+    "Name": "CONCENTRATION7",
+    "Index": 2054
+  },
+  {
+    "CellType": 129,
+    "Name": "SPLIT VALVE",
+    "Index": 2077
+  },
+  {
+    "CellType": 425,
+    "Name": "COMP 3 STAT",
+    "Index": 2090
+  },
+  {
+    "CellType": 134,
+    "Name": "APPARENT TMP EN",
+    "Index": 3
+  },
+  {
+    "CellType": 135,
+    "Name": "ZONE TEMP OUT",
+    "Index": 2048
+  },
+  {
+    "CellType": 67,
+    "Name": "AO4",
+    "Index": 2052
+  },
+  {
+    "CellType": 94,
+    "Name": "INPUT4",
+    "Index": 21
+  },
+  {
+    "CellType": 65,
+    "Name": "ANALOG INPUT1",
+    "Index": 4
+  },
+  {
+    "CellType": 134,
+    "Name": "SUM WNTR MODE",
+    "Index": 2083
+  },
+  {
+    "CellType": 371,
+    "Name": "SUPPLY FN %",
+    "Index": 2062
+  },
+  {
+    "CellType": 162,
+    "Name": "COMP PROOF10",
+    "Index": 50
+  },
+  {
+    "CellType": 171,
+    "Name": "COMP RUN PROOF",
+    "Index": 2049
+  },
+  {
+    "CellType": 67,
+    "Name": "AI1",
+    "Index": 1
+  },
+  {
+    "CellType": 134,
+    "Name": "WINTER HEAT OCC",
+    "Index": 22
+  },
+  {
+    "CellType": 134,
+    "Name": "SUM WNTR IN",
+    "Index": 54
+  },
+  {
+    "CellType": 162,
+    "Name": "COMP PROOF9",
+    "Index": 49
+  },
+  {
+    "CellType": 162,
+    "Name": "STAGE OUT12",
+    "Index": 2059
+  },
+  {
+    "CellType": 129,
+    "Name": "FAN OUT2",
+    "Index": 2053
+  },
+  {
+    "CellType": 129,
+    "Name": "FAN PROOF IN7",
+    "Index": 15
+  },
+  {
+    "CellType": 162,
+    "Name": "FILTERED PRES",
+    "Index": 2136
+  },
+  {
+    "CellType": 343,
+    "Name": "DISCH LINE TEMP",
+    "Index": 2052
+  },
+  {
+    "CellType": 162,
+    "Name": "COMP PROOF1",
+    "Index": 41
+  },
+  {
+    "CellType": 134,
+    "Name": "SS FAN OUT",
+    "Index": 2082
+  },
+  {
+    "CellType": 371,
+    "Name": "HEAT STG 2 SPT",
+    "Index": 7
+  },
+  {
+    "CellType": 129,
+    "Name": "FAN PROOF IN5",
+    "Index": 13
+  },
+  {
+    "CellType": 139,
+    "Name": "CASE MODE",
+    "Index": 2052
+  },
+  {
+    "CellType": 162,
+    "Name": "SUCTION TEMP",
+    "Index": 2
+  },
+  {
+    "CellType": 80,
+    "Name": "SCHED OUTPUT",
+    "Index": 2049
+  },
+  {
+    "CellType": 342,
+    "Name": "CONCENTRATION8",
+    "Index": 2055
+  },
+  {
+    "CellType": 425,
+    "Name": "LOAD SHED",
+    "Index": 2066
+  },
+  {
+    "CellType": 97,
+    "Name": "Refrig Type",
+    "Index": 7001
+  },
+  {
+    "CellType": 162,
+    "Name": "CUR SUPERHEAT",
+    "Index": 2135
+  },
+  {
+    "CellType": 169,
+    "Name": "ANTISWEAT PCT",
+    "Index": 2065
+  },
+  {
+    "CellType": 134,
+    "Name": "SUMMER HEAT UOC",
+    "Index": 19
+  },
+  {
+    "CellType": 142,
+    "Name": "HEAT1",
+    "Index": 2050
+  },
+  {
+    "CellType": 425,
+    "Name": "SPACE DEWPOINT",
+    "Index": 2127
+  },
+  {
+    "CellType": 66,
+    "Name": "DIG INPUT13",
+    "Index": 15
+  },
+  {
+    "CellType": 342,
+    "Name": "PKPK",
+    "Index": 2065
+  },
+  {
+    "CellType": 343,
+    "Name": "PROOF OUT",
+    "Index": 2050
+  },
+  {
+    "CellType": 371,
+    "Name": "COMD D DS PSI",
+    "Index": 2056
+  },
+  {
+    "CellType": 371,
+    "Name": "INDOOR DEWPOINT",
+    "Index": 2052
+  },
+  {
+    "CellType": 425,
+    "Name": "CLOGGED FILTER",
+    "Index": 2065
+  },
+  {
+    "CellType": 132,
+    "Name": "FULL OFF DEWPT",
+    "Index": 7
+  },
+  {
+    "CellType": 129,
+    "Name": "FST REC SP OUT",
+    "Index": 2099
+  },
+  {
+    "CellType": 162,
+    "Name": "SUCTION PRES",
+    "Index": 1
+  },
+  {
+    "CellType": 162,
+    "Name": "STAGE OUT4",
+    "Index": 2051
+  },
+  {
+    "CellType": 425,
+    "Name": "# of Compressor",
+    "Index": 2121
+  },
+  {
+    "CellType": 425,
+    "Name": "COND FAN 3",
+    "Index": 2106
+  },
+  {
+    "CellType": 67,
+    "Name": "DI3",
+    "Index": 11
+  },
+  {
+    "CellType": 86,
+    "Name": "DAILY KWH",
+    "Index": 2054
+  },
+  {
+    "CellType": 131,
+    "Name": "ACTIVE SETPT",
+    "Index": 2049
+  },
+  {
+    "CellType": 131,
+    "Name": "REFRIG SOLENOID",
+    "Index": 2050
+  },
+  {
+    "CellType": 129,
+    "Name": "FAN OUT1",
+    "Index": 2052
+  },
+  {
+    "CellType": 129,
+    "Name": "REFG TYPE OUT",
+    "Index": 2095
+  },
+  {
+    "CellType": 162,
+    "Name": "COMP DIG OIL16",
+    "Index": 24
+  },
+  {
+    "CellType": 134,
+    "Name": "SUPPLY TEMP",
+    "Index": 8
+  },
+  {
+    "CellType": 169,
+    "Name": "REFG LEAK",
+    "Index": 2067
+  },
+  {
+    "CellType": 134,
+    "Name": "HEAT STAGE3",
+    "Index": 2052
+  },
+  {
+    "CellType": 342,
+    "Name": "CONCENTRATION9",
+    "Index": 2056
+  },
+  {
+    "CellType": 371,
+    "Name": "COMP A SUC PSI",
+    "Index": 2057
+  },
+  {
+    "CellType": 129,
+    "Name": "DROPLEG TEMP",
+    "Index": 77
+  },
+  {
+    "CellType": 86,
+    "Name": "HOURLY KWH",
+    "Index": 2053
+  },
+  {
+    "CellType": 142,
+    "Name": "COOL1",
+    "Index": 2054
+  },
+  {
+    "CellType": 162,
+    "Name": "STAGE STATUS11",
+    "Index": 2148
+  },
+  {
+    "CellType": 82,
+    "Name": "COMP RUN PROOF",
+    "Index": 2049
+  },
+  {
+    "CellType": 371,
+    "Name": "HEAT STG 1 SPT",
+    "Index": 6
+  },
+  {
+    "CellType": 158,
+    "Name": "VALVE % 3",
+    "Index": 3
+  },
+  {
+    "CellType": 162,
+    "Name": "STAGE OUT7",
+    "Index": 2054
+  },
+  {
+    "CellType": 425,
+    "Name": "COMP 4 STAT",
+    "Index": 2091
+  },
+  {
+    "CellType": 67,
+    "Name": "AI5",
+    "Index": 5
+  },
+  {
+    "CellType": 169,
+    "Name": "Refr Leak Offs",
+    "Index": 7091
+  },
+  {
+    "CellType": 171,
+    "Name": "COMP STARTS",
+    "Index": 2060
+  },
+  {
+    "CellType": 129,
+    "Name": "PRES CTRL IN",
+    "Index": 2
+  },
+  {
+    "CellType": 139,
+    "Name": "ACTIVE CASE SP",
+    "Index": 2061
+  },
+  {
+    "CellType": 162,
+    "Name": "FLOAT TEMP",
+    "Index": 5
+  },
+  {
+    "CellType": 162,
+    "Name": "EMERGENCY OVR",
+    "Index": 68
+  },
+  {
+    "CellType": 162,
+    "Name": "STAGE STATUS8",
+    "Index": 2145
+  },
+  {
+    "CellType": 169,
+    "Name": "DISCH 2",
+    "Index": 2058
+  },
+  {
+    "CellType": 139,
+    "Name": "CASE TEMP SP",
+    "Index": 12
+  },
+  {
+    "CellType": 162,
+    "Name": "COMP DIG OIL3",
+    "Index": 11
+  },
+  {
+    "CellType": 139,
+    "Name": "DEW POINT",
+    "Index": 7
+  },
+  {
+    "CellType": 158,
+    "Name": "VALVE % 5",
+    "Index": 5
+  },
+  {
+    "CellType": 425,
+    "Name": "COOL MODE",
+    "Index": 2049
+  },
+  {
+    "CellType": 134,
+    "Name": "HEAT STAGE4",
+    "Index": 2053
+  },
+  {
+    "CellType": 142,
+    "Name": "SEASON",
+    "Index": 11
+  },
+  {
+    "CellType": 162,
+    "Name": "COMP PROOF16",
+    "Index": 56
+  },
+  {
+    "CellType": 425,
+    "Name": "REHEAT2 ACTIVE",
+    "Index": 2103
+  },
+  {
+    "CellType": 82,
+    "Name": "POWER CONSUMPT",
+    "Index": 2092
+  },
+  {
+    "CellType": 162,
+    "Name": "COMP DIG OIL7",
+    "Index": 15
+  },
+  {
+    "CellType": 162,
+    "Name": "COMP PROOF6",
+    "Index": 46
+  },
+  {
+    "CellType": 134,
+    "Name": "SUMMER HEAT OCC",
+    "Index": 18
+  },
+  {
+    "CellType": 134,
+    "Name": "HEAT STAGE2",
+    "Index": 2051
+  },
+  {
+    "CellType": 142,
+    "Name": "ZONE TEMP",
+    "Index": 14
+  },
+  {
+    "CellType": 162,
+    "Name": "COMP PROOF4",
+    "Index": 44
+  },
+  {
+    "CellType": 134,
+    "Name": "HEAT STAGE1",
+    "Index": 2050
+  },
+  {
+    "CellType": 131,
+    "Name": "PRODUCT TEMP 7",
+    "Index": 42
+  },
+  {
+    "CellType": 66,
+    "Name": "DIG INPUT9",
+    "Index": 11
+  },
+  {
+    "CellType": 162,
+    "Name": "COMP DIG OIL5",
+    "Index": 13
+  },
+  {
+    "CellType": 162,
+    "Name": "STAGE STATUS14",
+    "Index": 2151
+  },
+  {
+    "CellType": 171,
+    "Name": "POWER CONSUMPT",
+    "Index": 2130
+  },
+  {
+    "CellType": 171,
+    "Name": "SUCTION PRES IN",
+    "Index": 11
+  },
+  {
+    "CellType": 431,
+    "Name": "OUT_FREQ_",
+    "Index": 2072
+  },
+  {
+    "CellType": 66,
+    "Name": "DIG INPUT5",
+    "Index": 7
+  },
+  {
+    "CellType": 98,
+    "Name": "ACTIVE SCHED",
+    "Index": 2054
+  },
+  {
+    "CellType": 158,
+    "Name": "VALVE % 2",
+    "Index": 2
+  },
+  {
+    "CellType": 131,
+    "Name": "CASE ALM OUT 2",
+    "Index": 2064
+  },
+  {
+    "CellType": 66,
+    "Name": "DIG INPUT4",
+    "Index": 6
+  },
+  {
+    "CellType": 139,
+    "Name": "VALVE POS",
+    "Index": 2064
+  },
+  {
+    "CellType": 371,
+    "Name": "COMP A DS PSI",
+    "Index": 2053
+  },
+  {
+    "CellType": 87,
+    "Name": "HOURLY PEAK",
+    "Index": 2058
+  },
+  {
+    "CellType": 87,
+    "Name": "HOURLY TOTAL",
+    "Index": 2055
+  },
+  {
+    "CellType": 134,
+    "Name": "OUTDOOR HUMID",
+    "Index": 11
+  },
+  {
+    "CellType": 131,
+    "Name": "CASE TEMP 11",
+    "Index": 40
+  },
+  {
+    "CellType": 342,
+    "Name": "CONCENTRATION13",
+    "Index": 2060
+  },
+  {
+    "CellType": 32,
+    "Name": "INPUT",
+    "Index": 1
+  },
+  {
+    "CellType": 131,
+    "Name": "CASE TEMP 1",
+    "Index": 3
+  },
+  {
+    "CellType": 131,
+    "Name": "TERM TEMP SP",
+    "Index": 24
+  },
+  {
+    "CellType": 169,
+    "Name": "DISCH 1",
+    "Index": 2056
+  },
+  {
+    "CellType": 103,
+    "Name": "RELAY OUT 2",
+    "Index": 2
+  },
+  {
+    "CellType": 134,
+    "Name": "WINTER COOL UOC",
+    "Index": 25
+  },
+  {
+    "CellType": 131,
+    "Name": "PRODUCT TEMP 11",
+    "Index": 46
+  },
+  {
+    "CellType": 371,
+    "Name": "COMP B DS PSI",
+    "Index": 2054
+  },
+  {
+    "CellType": 94,
+    "Name": "CONTROL VALUE",
+    "Index": 2049
+  },
+  {
+    "CellType": 162,
+    "Name": "STAGE STATUS12",
+    "Index": 2149
+  },
+  {
+    "CellType": 162,
+    "Name": "STAGE OUT16",
+    "Index": 2063
+  },
+  {
+    "CellType": 66,
+    "Name": "NUM INPUTS ON",
+    "Index": 2051
+  },
+  {
+    "CellType": 162,
+    "Name": "GROUP LLSV",
+    "Index": 2131
+  },
+  {
+    "CellType": 129,
+    "Name": "FAN PROOF IN12",
+    "Index": 20
+  },
+  {
+    "CellType": 134,
+    "Name": "SUMMER COOL OCC",
+    "Index": 20
+  },
+  {
+    "CellType": 162,
+    "Name": "STAGE OUT15",
+    "Index": 2062
+  },
+  {
+    "CellType": 142,
+    "Name": "COOL RUN PCT2",
+    "Index": 2077
+  },
+  {
+    "CellType": 162,
+    "Name": "SUCT PRES SETPT",
+    "Index": 6
+  },
+  {
+    "CellType": 142,
+    "Name": "OCC HEAT",
+    "Index": 6
+  },
+  {
+    "CellType": 371,
+    "Name": "COMP FAULT",
+    "Index": 2064
+  },
+  {
+    "CellType": 425,
+    "Name": "SUPPLY HEAT SP",
+    "Index": 2119
+  },
+  {
+    "CellType": 431,
+    "Name": "CURRENT_TORQUE",
+    "Index": 2074
+  },
+  {
+    "CellType": 96,
+    "Name": "BYPASS VALUE",
+    "Index": 4
+  },
+  {
+    "CellType": 80,
+    "Name": "DAY SCHED OUT",
+    "Index": 2050
+  },
+  {
+    "CellType": 142,
+    "Name": "FAN",
+    "Index": 2049
+  },
+  {
+    "CellType": 342,
+    "Name": "CONCENTRATION11",
+    "Index": 2058
+  },
+  {
+    "CellType": 67,
+    "Name": "DI1",
+    "Index": 9
+  },
+  {
+    "CellType": 142,
+    "Name": "RETURN TEMP",
+    "Index": 2069
+  },
+  {
+    "CellType": 129,
+    "Name": "PRES CTRL STPT",
+    "Index": 3
+  },
+  {
+    "CellType": 129,
+    "Name": "FAN PROOF IN4",
+    "Index": 12
+  },
+  {
+    "CellType": 142,
+    "Name": "ZONE OCC",
+    "Index": 10
+  },
+  {
+    "CellType": 142,
+    "Name": "HEAT2",
+    "Index": 2051
+  },
+  {
+    "CellType": 162,
+    "Name": "COMP DIG OIL15",
+    "Index": 23
+  },
+  {
+    "CellType": 342,
+    "Name": "CONCENTRATION1",
+    "Index": 2048
+  },
+  {
+    "CellType": 65,
+    "Name": "ANALOG INPUT3",
+    "Index": 6
+  },
+  {
+    "CellType": 129,
+    "Name": "FAN OUT3",
+    "Index": 2054
+  },
+  {
+    "CellType": 169,
+    "Name": "Disch 3 Offs",
+    "Index": 7085
+  },
+  {
+    "CellType": 169,
+    "Name": "DISCH 4",
+    "Index": 2064
+  },
+  {
+    "CellType": 134,
+    "Name": "Controlled By",
+    "Index": 7001
+  },
+  {
+    "CellType": 142,
+    "Name": "COOL RUN PCT3",
+    "Index": 2078
+  },
+  {
+    "CellType": 425,
+    "Name": "UNOCC COOL SP",
+    "Index": 7134
+  },
+  {
+    "CellType": 425,
+    "Name": "OCC COOL SP",
+    "Index": 7133
+  },
+  {
+    "CellType": 425,
+    "Name": "SUC PSI SP GP 2",
+    "Index": 2111
+  },
+  {
+    "CellType": 126,
+    "Name": "STATUS",
+    "Index": 2048
+  },
+  {
+    "CellType": 134,
+    "Name": "COOL STAGE1",
+    "Index": 2058
+  },
+  {
+    "CellType": 425,
+    "Name": "COND FAN 1",
+    "Index": 2104
+  },
+  {
+    "CellType": 162,
+    "Name": "COMP DIG OIL2",
+    "Index": 10
+  },
+  {
+    "CellType": 162,
+    "Name": "STAGES ACTIVE",
+    "Index": 2128
+  },
+  {
+    "CellType": 171,
+    "Name": "COMP CURRENT",
+    "Index": 2127
+  },
+  {
+    "CellType": 343,
+    "Name": "ACT RUN OUT",
+    "Index": 2095
+  },
+  {
+    "CellType": 162,
+    "Name": "COMP PROOF11",
+    "Index": 51
+  },
+  {
+    "CellType": 66,
+    "Name": "Comb Method",
+    "Index": 7002
+  },
+  {
+    "CellType": 142,
+    "Name": "OCC COOL",
+    "Index": 8
+  },
+  {
+    "CellType": 162,
+    "Name": "STAGE STATUS16",
+    "Index": 2153
+  },
+  {
+    "CellType": 131,
+    "Name": "PRODUCT TEMP 1",
+    "Index": 29
+  },
+  {
+    "CellType": 371,
+    "Name": "AUX HT STG 1",
+    "Index": 2074
+  },
+  {
+    "CellType": 103,
+    "Name": "DIG INPUT 2",
+    "Index": 2049
+  },
+  {
+    "CellType": 162,
+    "Name": "COMP PROOF8",
+    "Index": 48
+  },
+  {
+    "CellType": 162,
+    "Name": "STAGE STATUS3",
+    "Index": 2140
+  },
+  {
+    "CellType": 139,
+    "Name": "DEFR TERM TEMP1",
+    "Index": 2074
+  },
+  {
+    "CellType": 131,
+    "Name": "Defrost Time 2",
+    "Index": 7027
+  },
+  {
+    "CellType": 96,
+    "Name": "CONTROL VALUE",
+    "Index": 2053
+  },
+  {
+    "CellType": 97,
+    "Name": "Use Abs Pressure",
+    "Index": 7003
+  },
+  {
+    "CellType": 139,
+    "Name": "DISCHARGE AIR3",
+    "Index": 2069
+  },
+  {
+    "CellType": 371,
+    "Name": "HEAT STG 4 SPT",
+    "Index": 9
+  },
+  {
+    "CellType": 67,
+    "Name": "AI8",
+    "Index": 8
+  },
+  {
+    "CellType": 82,
+    "Name": "SUCTION PRES IN",
+    "Index": 2
+  },
+  {
+    "CellType": 91,
+    "Name": "OUTDOOR HUMID",
+    "Index": 2
+  },
+  {
+    "CellType": 131,
+    "Name": "CASE ALM OUT 1",
+    "Index": 2063
+  },
+  {
+    "CellType": 425,
+    "Name": "OCC HEAT SP",
+    "Index": 7135
+  },
+  {
+    "CellType": 96,
+    "Name": "LOGIC IN2",
+    "Index": 14
+  },
+  {
+    "CellType": 87,
+    "Name": "TOTAL",
+    "Index": 2053
+  },
+  {
+    "CellType": 134,
+    "Name": "PHASE LOSS",
+    "Index": 48
+  },
+  {
+    "CellType": 142,
+    "Name": "HEAT RUN PCT2",
+    "Index": 2081
+  },
+  {
+    "CellType": 162,
+    "Name": "COMP DIG OIL8",
+    "Index": 16
+  },
+  {
+    "CellType": 96,
+    "Name": "LOGIC IN4",
+    "Index": 16
+  },
+  {
+    "CellType": 139,
+    "Name": "CASE TEMP",
+    "Index": 2063
+  },
+  {
+    "CellType": 162,
+    "Name": "STAGE STATUS10",
+    "Index": 2147
+  },
+  {
+    "CellType": 131,
+    "Name": "CIRCUIT STATE",
+    "Index": 2048
+  },
+  {
+    "CellType": 342,
+    "Name": "CONCENTRATION10",
+    "Index": 2057
+  },
+  {
+    "CellType": 129,
+    "Name": "FAN OUT12",
+    "Index": 2063
+  },
+  {
+    "CellType": 135,
+    "Name": "SUM WNTR MODE",
+    "Index": 2057
+  },
+  {
+    "CellType": 162,
+    "Name": "COMP PROOF15",
+    "Index": 55
+  },
+  {
+    "CellType": 67,
+    "Name": "AI7",
+    "Index": 7
+  },
+  {
+    "CellType": 129,
+    "Name": "VS FAN OUT",
+    "Index": 2051
+  },
+  {
+    "CellType": 135,
+    "Name": "OCCUPANCY",
+    "Index": 2
+  },
+  {
+    "CellType": 131,
+    "Name": "PRODUCT TEMP 9",
+    "Index": 44
+  },
+  {
+    "CellType": 134,
+    "Name": "SUMMER COOL UOC",
+    "Index": 21
+  },
+  {
+    "CellType": 162,
+    "Name": "STAGE OUT6",
+    "Index": 2053
+  },
+  {
+    "CellType": 425,
+    "Name": "BA DAMPER %",
+    "Index": 2097
+  },
+  {
+    "CellType": 169,
+    "Name": "AntiSwt LO Stpt",
+    "Index": 7009
+  },
+  {
+    "CellType": 67,
+    "Name": "AI6",
+    "Index": 6
+  },
+  {
+    "CellType": 129,
+    "Name": "FAN OUT4",
+    "Index": 2055
+  },
+  {
+    "CellType": 131,
+    "Name": "CASE ALM OUT 4",
+    "Index": 2066
+  },
+  {
+    "CellType": 371,
+    "Name": "HEAT STG 3 SPT",
+    "Index": 8
+  },
+  {
+    "CellType": 129,
+    "Name": "VS FREQ",
+    "Index": 73
+  },
+  {
+    "CellType": 134,
+    "Name": "COOL STAGE2",
+    "Index": 2059
+  },
+  {
+    "CellType": 67,
+    "Name": "DI5",
+    "Index": 13
+  },
+  {
+    "CellType": 162,
+    "Name": "FLOAT CKT STATE",
+    "Index": 63
+  },
+  {
+    "CellType": 371,
+    "Name": "COMP C",
+    "Index": 2072
+  },
+  {
+    "CellType": 131,
+    "Name": "PRODUCT TEMP 3",
+    "Index": 31
+  },
+  {
+    "CellType": 371,
+    "Name": "ZONE DH SETPT",
+    "Index": 2
+  },
+  {
+    "CellType": 129,
+    "Name": "UNSPLIT STPT",
+    "Index": 42
+  },
+  {
+    "CellType": 162,
+    "Name": "SUCT MON TEMP",
+    "Index": 86
+  },
+  {
+    "CellType": 371,
+    "Name": "ZONE HEAT SETPT",
+    "Index": 10
+  },
+  {
+    "CellType": 33,
+    "Name": "INPUT",
+    "Index": 1
+  },
+  {
+    "CellType": 129,
+    "Name": "TEMP DIF STPT",
+    "Index": 6
+  },
+  {
+    "CellType": 162,
+    "Name": "STAGE OUT8",
+    "Index": 2055
+  },
+  {
+    "CellType": 66,
+    "Name": "DIG INPUT6",
+    "Index": 8
+  },
+  {
+    "CellType": 67,
+    "Name": "DO1",
+    "Index": 2053
+  },
+  {
+    "CellType": 134,
+    "Name": "ACT DEHUM SETPT",
+    "Index": 2068
+  },
+  {
+    "CellType": 142,
+    "Name": "HEAT3",
+    "Index": 2052
+  },
+  {
+    "CellType": 162,
+    "Name": "COMP PROOF5",
+    "Index": 45
+  },
+  {
+    "CellType": 131,
+    "Name": "CASE TEMP 9",
+    "Index": 38
+  },
+  {
+    "CellType": 131,
+    "Name": "CASE TEMP 4",
+    "Index": 6
+  },
+  {
+    "CellType": 425,
+    "Name": "COMP 2 STAT %",
+    "Index": 2088
+  },
+  {
+    "CellType": 129,
+    "Name": "FAN PROOF IN6",
+    "Index": 14
+  },
+  {
+    "CellType": 162,
+    "Name": "STAGE OUT3",
+    "Index": 2050
+  },
+  {
+    "CellType": 131,
+    "Name": "CONTROL TEMP",
+    "Index": 2052
+  },
+  {
+    "CellType": 36,
+    "Name": "INPUT",
+    "Index": 1
+  },
+  {
+    "CellType": 65,
+    "Name": "Num Inputs",
+    "Index": 2050
+  },
+  {
+    "CellType": 131,
+    "Name": "Defrost Time 4",
+    "Index": 7029
+  },
+  {
+    "CellType": 371,
+    "Name": "COMP A",
+    "Index": 2070
+  },
+  {
+    "CellType": 94,
+    "Name": "COMMAND OUT",
+    "Index": 2048
+  },
+  {
+    "CellType": 65,
+    "Name": "ANALOG INPUT2",
+    "Index": 5
+  },
+  {
+    "CellType": 134,
+    "Name": "HEAT COOL MODE",
+    "Index": 2066
+  },
+  {
+    "CellType": 135,
+    "Name": "ACTIVE HT STPT",
+    "Index": 2061
+  },
+  {
+    "CellType": 162,
+    "Name": "STAGE STATUS2",
+    "Index": 2139
+  },
+  {
+    "CellType": 132,
+    "Name": "DEWPOINT IN",
+    "Index": 3
+  },
+  {
+    "CellType": 134,
+    "Name": "RETURN TEMP",
+    "Index": 12
+  },
+  {
+    "CellType": 134,
+    "Name": "ACTIVE SETPT",
+    "Index": 2067
+  },
+  {
+    "CellType": 162,
+    "Name": "COMP DIG OIL12",
+    "Index": 20
+  },
+  {
+    "CellType": 342,
+    "Name": "TEMPERATURE",
+    "Index": 2064
+  },
+  {
+    "CellType": 142,
+    "Name": "UNOCC HEAT",
+    "Index": 7
+  },
+  {
+    "CellType": 371,
+    "Name": "AUX HT STG 4",
+    "Index": 2077
+  },
+  {
+    "CellType": 66,
+    "Name": "DIG INPUT2",
+    "Index": 4
+  },
+  {
+    "CellType": 342,
+    "Name": "PRESSURE",
+    "Index": 2068
+  },
+  {
+    "CellType": 162,
+    "Name": "STAGE OUT11",
+    "Index": 2058
+  },
+  {
+    "CellType": 131,
+    "Name": "CASE ALM HI SP",
+    "Index": 2070
+  },
+  {
+    "CellType": 91,
+    "Name": "OUTDOOR TEMP",
+    "Index": 1
+  },
+  {
+    "CellType": 169,
+    "Name": "Disch 1 Offs",
+    "Index": 7081
+  },
+  {
+    "CellType": 371,
+    "Name": "COMP D",
+    "Index": 2073
+  },
+  {
+    "CellType": 425,
+    "Name": "COND FAN 2",
+    "Index": 2105
+  },
+  {
+    "CellType": 425,
+    "Name": "HEAT CAPACITY%",
+    "Index": 2086
+  },
+  {
+    "CellType": 425,
+    "Name": "HEAT STAGE 1",
+    "Index": 2092
+  },
+  {
+    "CellType": 425,
+    "Name": "OUTDR AIR TEMP",
+    "Index": 2054
+  },
+  {
+    "CellType": 98,
+    "Name": "LIGHT LEVEL IN",
+    "Index": 1
+  },
+  {
+    "CellType": 129,
+    "Name": "FAN PROOF IN10",
+    "Index": 18
+  },
+  {
+    "CellType": 134,
+    "Name": "APPARENT TEMP",
+    "Index": 2070
+  },
+  {
+    "CellType": 142,
+    "Name": "OCCUPANCY",
+    "Index": 2072
+  },
+  {
+    "CellType": 425,
+    "Name": "OUTDR AIR DEWPT",
+    "Index": 2128
+  },
+  {
+    "CellType": 67,
+    "Name": "DO3",
+    "Index": 2055
+  },
+  {
+    "CellType": 132,
+    "Name": "FULL ON DEWPT",
+    "Index": 6
+  },
+  {
+    "CellType": 134,
+    "Name": "OUTDOOR TEMP",
+    "Index": 10
+  },
+  {
+    "CellType": 131,
+    "Name": "PEAK DEF TEMP",
+    "Index": 2055
+  },
+  {
+    "CellType": 371,
+    "Name": "ZONE COOL SETPT",
+    "Index": 4
+  },
+  {
+    "CellType": 431,
+    "Name": "ENERGY_KW/H",
+    "Index": 2063
+  },
+  {
+    "CellType": 162,
+    "Name": "COMP DIG OIL14",
+    "Index": 22
+  },
+  {
+    "CellType": 342,
+    "Name": "CONCENTRATION16",
+    "Index": 2063
+  }
+]
+

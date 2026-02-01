@@ -14,14 +14,6 @@ public sealed class E2GetCellListOperation : E2BaseDeviceOperation
         ControllerName = controllerName;
     }
 
-    public sealed class E2CellListInfo
-    {
-        public string Controller { get; init; } = "";
-        public string CellName { get; init; } = "";
-        public string CellTypeName { get; init; } = "";
-        public string CellLongName { get; init; } = "";
-        public int CellType { get; init; }
-    }
 
     protected override async Task ParseAsync(HttpResponseMessage response, CancellationToken ct)
     {
@@ -45,7 +37,7 @@ public sealed class E2GetCellListOperation : E2BaseDeviceOperation
 
             var info = new E2CellListInfo
             {
-                Controller = obj["controller"]?.ToString() ?? "",
+                Controller = ControllerName,
                 CellName = obj["cellname"]?.ToString() ?? "",
                 CellTypeName = obj["celltypename"]?.ToString() ?? "",
                 CellLongName = obj["celllongname"]?.ToString() ?? "",
