@@ -22,9 +22,9 @@ builder.Services.Configure<NetworkSettings>(builder.Configuration.GetSection("Ne
 
 
 // TEMPORARY MANUAL TEST HARNESS
-if (args.Contains("--test-e2"))
+if (args.Contains("--test-operator"))
 {
-    var endpoint = new Uri("http://10.128.223.180:14106/JSON-RPC"); // your E2 IP
+    var endpoint = new Uri("http://10.128.223.180:14106/JSON-RPC");
 
     var settings = new GeneralSettings
     {
@@ -36,16 +36,10 @@ if (args.Contains("--test-e2"))
 
     var executor = new HttpPipelineExecutor(settings);
 
-    var op = new E2GetControllerListOperation(endpoint);
+    // var op = new E2GetControllerListOperation(endpoint);
+    var op = new E2GetAlarmListOperation(endpoint, "HVAC/LTS");
 
     await op.ExecuteAsync(executor, CancellationToken.None);
-
-    // Console.WriteLine("Raw response:");
-    // Console.WriteLine(op.RawJson);
-
-    // Save replay
-    Directory.CreateDirectory("ReplayData");
-    // File.WriteAllText("ReplayData/E2.GetControllerList.txt", op.RawJson ?? "");
 
     return;
 }

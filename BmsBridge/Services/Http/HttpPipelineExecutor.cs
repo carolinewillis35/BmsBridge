@@ -50,17 +50,18 @@ public sealed class HttpPipelineExecutor : IHttpPipelineExecutor, IDisposable
     {
         ThrowIfDisposed();
 
+        HttpResponseMessage response;
         if (_settings.keep_alive)
         {
             // Reuse pipeline
             var pipeline = GetOrCreatePipeline();
-            return await pipeline.SendAsync(request, ct);
+            response = await pipeline.SendAsync(request, ct);
         }
         else
         {
             // Create a fresh pipeline for this request
             var pipeline = CreatePipeline();
-            var response = await pipeline.SendAsync(request, ct);
+            response = await pipeline.SendAsync(request, ct);
 
             pipeline.Dispose();
 
@@ -69,9 +70,16 @@ public sealed class HttpPipelineExecutor : IHttpPipelineExecutor, IDisposable
                 TimeSpan.FromSeconds(_settings.http_request_delay_seconds),
                 ct
             );
-
-            return response;
         }
+
+        // On development, save the response for replay and testing
+        if (RuntimeInformation.IsOSPlatform(OSPlatform.Linux) && Name is not null)
+        {
+            var text = await response.Content.ReadAsStringAsync();
+            await File.WriteAllTextAsync($"/home/henry/Projects/BmsBridge/BmsBridge/ReplayData/{Name}.txt", text);
+        }
+
+        return response;
     }
 
     private void ThrowIfDisposed()
