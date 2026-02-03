@@ -8,8 +8,8 @@ public sealed class E2GetAlarmListOperation : E2BaseDeviceOperation
 
     public IReadOnlyList<JsonObject>? Alarms { get; set; }
 
-    public E2GetAlarmListOperation(Uri endpoint, string controllerName)
-        : base(endpoint)
+    public E2GetAlarmListOperation(Uri endpoint, string controllerName, ILoggerFactory loggerFactory)
+        : base(endpoint, loggerFactory)
     {
         ControllerName = controllerName;
     }
@@ -43,6 +43,7 @@ public sealed class E2GetAlarmListOperation : E2BaseDeviceOperation
     {
         var parameters = new JsonArray { ControllerName };
         var request = BuildRequest(Name, parameters);
+        _logger.LogInformation($"Sending {Name} to {Endpoint}");
         var response = await executor.SendAsync(request, ct, Name);
         await ParseAsync(response, ct);
     }

@@ -7,8 +7,8 @@ public sealed class E2GetControllerListOperation : E2BaseDeviceOperation
     public IReadOnlyList<E2ControllerInfo>? Controllers { get; private set; }
     public E2ControllerInfo? PrimaryController => Controllers?.FirstOrDefault();
 
-    public E2GetControllerListOperation(Uri endpoint)
-        : base(endpoint)
+    public E2GetControllerListOperation(Uri endpoint, ILoggerFactory loggerFactory)
+        : base(endpoint, loggerFactory)
     {
     }
 

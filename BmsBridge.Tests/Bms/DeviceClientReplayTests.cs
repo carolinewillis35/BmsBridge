@@ -1,3 +1,5 @@
+using Microsoft.Extensions.Logging.Abstractions;
+
 public class DeviceClientReplayTests
 {
     [Fact]
@@ -11,12 +13,21 @@ public class DeviceClientReplayTests
             new Uri("http://fake-device"),
             executor,
             indexProvider,
-            normalizer
+            normalizer,
+            NullLoggerFactory.Instance
         );
 
         await client.InitializeAsync();
 
         // PollAsync prints normalized messages to console
-        await client.PollAsync();
+        try
+        {
+            await client.PollAsync();
+        }
+        catch (Exception ex)
+        {
+            Console.WriteLine(ex);
+            Assert.False(false);
+        }
     }
 }

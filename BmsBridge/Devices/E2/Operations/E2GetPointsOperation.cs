@@ -16,8 +16,9 @@ public sealed class E2GetPointsOperation : E2BaseDeviceOperation
         Uri endpoint,
         string controllerName,
         string cellName,
-        IReadOnlyList<(int Index, string PointName)> pointsToQuery)
-        : base(endpoint)
+        IReadOnlyList<(int Index, string PointName)> pointsToQuery,
+        ILoggerFactory loggerFactory)
+        : base(endpoint, loggerFactory)
     {
         ControllerName = controllerName;
         CellName = cellName;
@@ -37,6 +38,7 @@ public sealed class E2GetPointsOperation : E2BaseDeviceOperation
         var parameters = new JsonArray { paramArray };
 
         var request = BuildRequest(Name, parameters);
+        _logger.LogInformation($"Sending {Name} to {Endpoint}");
         var response = await executor.SendAsync(request, ct, Name);
         await ParseAsync(response, ct);
     }

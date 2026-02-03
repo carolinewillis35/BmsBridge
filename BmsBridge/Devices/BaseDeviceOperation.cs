@@ -6,11 +6,13 @@ public abstract class BaseDeviceOperation : IDeviceOperation
     public abstract string Name { get; }
 
     protected readonly Uri Endpoint;
+    protected readonly ILogger _logger;
     public object? ExportObject { get; set; }
 
-    protected BaseDeviceOperation(Uri endpoint)
+    protected BaseDeviceOperation(Uri endpoint, ILoggerFactory loggerFactory)
     {
         Endpoint = endpoint;
+        _logger = loggerFactory.CreateLogger(GetType());
     }
 
     protected virtual IReadOnlyDictionary<string, string> DefaultHeaders =>
@@ -35,6 +37,7 @@ public abstract class BaseDeviceOperation : IDeviceOperation
     public virtual async Task ExecuteAsync(IHttpPipelineExecutor executor, CancellationToken ct)
     {
         var request = BuildRequest();
+        _logger.LogInformation($"Sending {Name} to {Endpoint}");
         var response = await executor.SendAsync(request, ct, Name);
         await ParseAsync(response, ct);
     }

@@ -1,12 +1,13 @@
 using System.Security.Cryptography.X509Certificates;
+using Microsoft.Extensions.Options;
 
 public sealed class StoreCertificateSource : ICertificateSource
 {
     private readonly string _subjectName;
 
-    public StoreCertificateSource(string subjectName)
+    public StoreCertificateSource(IOptions<AzureSettings> azureSettings)
     {
-        _subjectName = subjectName;
+        _subjectName = azureSettings.Value.certificate_subject;
     }
 
     public X509Certificate2? Load()

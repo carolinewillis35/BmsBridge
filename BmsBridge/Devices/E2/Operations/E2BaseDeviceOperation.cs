@@ -3,8 +3,8 @@ using System.Text;
 
 public abstract class E2BaseDeviceOperation : BaseDeviceOperation
 {
-    protected E2BaseDeviceOperation(Uri endpoint)
-        : base(endpoint)
+    protected E2BaseDeviceOperation(Uri endpoint, ILoggerFactory loggerFactory)
+        : base(endpoint, loggerFactory)
     {
     }
 

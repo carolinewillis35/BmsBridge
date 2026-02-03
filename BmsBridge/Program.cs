@@ -1,4 +1,7 @@
 using Serilog;
+using Microsoft.Extensions.Logging.Abstractions;
+using Microsoft.Extensions.Options;
+using System.Runtime.InteropServices;
 
 var builder = Host.CreateApplicationBuilder(args);
 
@@ -18,7 +21,27 @@ builder.Services.Configure<AzureSettings>(builder.Configuration.GetSection("Azur
 builder.Services.Configure<GeneralSettings>(builder.Configuration.GetSection("GeneralSettings"));
 builder.Services.Configure<NetworkSettings>(builder.Configuration.GetSection("NetworkSettings"));
 
-// builder.Services.AddHostedService<Worker>();
+// DPS pipeline
+builder.Services.AddSingleton<IIotDevice, AzureIotDevice>();
+if (!RuntimeInformation.IsOSPlatform(OSPlatform.Linux))
+{
+    builder.Services.AddSingleton<ICertificateSource>(sp =>
+    {
+        var options = sp.GetRequiredService<IOptions<AzureSettings>>();
+        return new StoreCertificateSource(options);
+    });
+}
+else
+{
+    builder.Services.AddSingleton<ICertificateSource>(sp =>
+        new PfxCertificateSource("/home/henry/Projects/BmsBridge/BmsBridge/DevelopmentKeys/CertificateTest.pfx"));
+}
+builder.Services.AddSingleton<CertificateProvider>();
+builder.Services.AddSingleton<KeyvaultService>();
+builder.Services.AddSingleton<DpsService>();
+
+// Workers
+builder.Services.AddHostedService<DpsTestWorker>();
 
 
 // TEMPORARY MANUAL TEST HARNESS
@@ -36,17 +59,14 @@ if (args.Contains("--test-operator"))
 
     var executor = new HttpPipelineExecutor(settings);
 
-    // var op = new E2GetControllerListOperation(endpoint);
-    // var op = new E2GetAlarmListOperation(endpoint, "HVAC/LTS");
-
     var loader = new EmbeddedE2IndexMappingProvider();
 
-    var op = new E2GetPointsOperation(endpoint, "HVAC/LTS", "AC1 FAN", loader.GetPointsForCellType(33));
+    var op = new E2GetPointsOperation(endpoint, "HVAC/LTS", "AC1 FAN", loader.GetPointsForCellType(33), NullLoggerFactory.Instance);
 
     await op.ExecuteAsync(executor, CancellationToken.None);
 
     return;
 }
 
-// var app = builder.Build();
-// app.Run();
+var app = builder.Build();
+app.Run();

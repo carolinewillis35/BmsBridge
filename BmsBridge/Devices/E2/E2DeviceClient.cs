@@ -1,49 +1,44 @@
 using System.Text.Json.Nodes;
 using System.Text.Json;
 
-public sealed class E2DeviceClient : IDeviceClient
+public sealed class E2DeviceClient : BaseDeviceClient
 {
-    private readonly Uri _endpoint;
-    private readonly IHttpPipelineExecutor _executor;
     private readonly IE2IndexMappingProvider _indexProvider;
-    private readonly INormalizerService _normalizer;
 
     private string? _primaryController;
     private List<E2CellListInfo>? _cells;
 
-    public string DeviceIp => _endpoint.Host;
-    public string DeviceType => "E2";
+    public override string DeviceType => "E2";
 
     public E2DeviceClient(
         Uri endpoint,
         IHttpPipelineExecutor executor,
         IE2IndexMappingProvider indexProvider,
-        INormalizerService normalizer)
+        INormalizerService normalizer,
+        ILoggerFactory loggerFactory
+        ) : base(endpoint: endpoint, executor: executor, normalizer: normalizer, loggerFactory: loggerFactory)
     {
-        _endpoint = endpoint;
-        _executor = executor;
         _indexProvider = indexProvider;
-        _normalizer = normalizer;
     }
 
-    public async Task InitializeAsync(CancellationToken ct = default)
+    public override async Task InitializeAsync(CancellationToken ct = default)
     {
         // 1. Get controller list
-        var controllerOp = new E2GetControllerListOperation(_endpoint);
+        var controllerOp = new E2GetControllerListOperation(_endpoint, _loggerFactory);
         await controllerOp.ExecuteAsync(_executor, ct);
 
         _primaryController = controllerOp.PrimaryController!.Name
             ?? throw new InvalidOperationException("No primary controller found.");
 
         // 2. Get cell list
-        var cellOp = new E2GetCellListOperation(_endpoint, _primaryController);
+        var cellOp = new E2GetCellListOperation(_endpoint, _primaryController, _loggerFactory);
         await cellOp.ExecuteAsync(_executor, ct);
 
         _cells = cellOp.Cells?.ToList()
             ?? throw new InvalidOperationException("Cell list missing.");
     }
 
-    public async Task PollAsync(CancellationToken ct = default)
+    public override async Task PollAsync(CancellationToken ct = default)
     {
         if (_primaryController is null || _cells is null)
             throw new InvalidOperationException("DeviceClient not initialized.");
@@ -59,7 +54,8 @@ public sealed class E2DeviceClient : IDeviceClient
                 _endpoint,
                 _primaryController,
                 cell.CellName,
-                points
+                points,
+                _loggerFactory
             );
 
             await op.ExecuteAsync(_executor, ct);
@@ -83,7 +79,7 @@ public sealed class E2DeviceClient : IDeviceClient
         }
 
         // Alarms
-        var alarmOp = new E2GetAlarmListOperation(_endpoint, _primaryController);
+        var alarmOp = new E2GetAlarmListOperation(_endpoint, _primaryController, _loggerFactory);
         await alarmOp.ExecuteAsync(_executor, ct);
 
         var normalizedAlarms = _normalizer.Normalize(
@@ -94,10 +90,10 @@ public sealed class E2DeviceClient : IDeviceClient
         );
 
         // Temporary for testing
-        // Console.WriteLine(normalizedAlarms.ToJsonString(new JsonSerializerOptions
-        // {
-        //     WriteIndented = true
-        // }));
+        Console.WriteLine(normalizedAlarms.ToJsonString(new JsonSerializerOptions
+        {
+            WriteIndented = true
+        }));
 
         // TODO: send normalized alarms to IoT Hub
     }

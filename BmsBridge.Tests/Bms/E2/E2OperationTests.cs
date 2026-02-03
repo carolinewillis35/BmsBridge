@@ -1,5 +1,6 @@
 using System.Text.Json.Nodes;
 using System.Text.Json;
+using Microsoft.Extensions.Logging.Abstractions;
 
 public class E2OperationTests
 {
@@ -49,7 +50,7 @@ public class E2OperationTests
     {
         await RunOperationAsync(
             "E2.GetControllerList",
-            () => new E2GetControllerListOperation(endpoint)
+            () => new E2GetControllerListOperation(endpoint, NullLoggerFactory.Instance)
         );
     }
 
@@ -58,7 +59,7 @@ public class E2OperationTests
     {
         await RunOperationAsync(
             "E2.GetCellList",
-            () => new E2GetCellListOperation(endpoint, "fake")
+            () => new E2GetCellListOperation(endpoint, "fake", NullLoggerFactory.Instance)
         );
     }
 
@@ -67,7 +68,7 @@ public class E2OperationTests
     {
         await RunOperationAsync(
             "E2.GetAlarmList",
-            () => new E2GetAlarmListOperation(endpoint, "fake")
+            () => new E2GetAlarmListOperation(endpoint, "fake", NullLoggerFactory.Instance)
         );
     }
 
@@ -77,7 +78,7 @@ public class E2OperationTests
         var fakeList = new List<(int, string)> { (1, "fake") };
         await RunOperationAsync(
             "E2.GetAlarmList",
-            () => new E2GetPointsOperation(endpoint, "fake", "fake", fakeList)
+            () => new E2GetPointsOperation(endpoint, "fake", "fake", fakeList, NullLoggerFactory.Instance)
         );
     }
 }

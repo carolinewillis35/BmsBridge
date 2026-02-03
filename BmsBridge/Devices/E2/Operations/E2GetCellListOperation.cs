@@ -8,8 +8,8 @@ public sealed class E2GetCellListOperation : E2BaseDeviceOperation
 
     public IReadOnlyList<E2CellListInfo>? Cells { get; private set; }
 
-    public E2GetCellListOperation(Uri endpoint, string controllerName)
-        : base(endpoint)
+    public E2GetCellListOperation(Uri endpoint, string controllerName, ILoggerFactory loggerFactory)
+        : base(endpoint, loggerFactory)
     {
         ControllerName = controllerName;
     }
@@ -55,6 +55,7 @@ public sealed class E2GetCellListOperation : E2BaseDeviceOperation
     {
         var parameters = new JsonArray { ControllerName };
         var request = BuildRequest(Name, parameters);
+        _logger.LogInformation($"Sending {Name} to {Endpoint}");
         var response = await executor.SendAsync(request, ct, Name);
         await ParseAsync(response, ct);
     }

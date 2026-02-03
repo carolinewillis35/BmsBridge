@@ -13,9 +13,16 @@ public sealed class CertificateProvider : ICertificateProvider
     {
         foreach (var source in _sources)
         {
-            var cert = source.Load();
-            if (cert != null)
-                return cert;
+            try
+            {
+                var cert = source.Load();
+                if (cert != null)
+                    return cert;
+            }
+            finally
+            {
+
+            }
         }
 
         throw new InvalidOperationException("No valid certificate found.");
