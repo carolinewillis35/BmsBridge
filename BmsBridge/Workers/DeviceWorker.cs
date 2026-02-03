@@ -29,26 +29,32 @@ public sealed class DeviceWorker : BackgroundService
 
     protected override async Task ExecuteAsync(CancellationToken stoppingToken)
     {
-
-        var runners = GetDeviceRunners();
-
-        var tasks = runners
-            .Select(runner => runner.RunLoopAsync(stoppingToken))
-            .ToList();
-
-        _logger.LogInformation("DeviceWorker started {Count} device runners.", tasks.Count);
-
-        try
+        while (!stoppingToken.IsCancellationRequested)
         {
-            await Task.WhenAll(tasks);
-        }
-        catch (OperationCanceledException)
-        {
-            _logger.LogInformation("DeviceWorker cancellation requested.");
-        }
-        catch (Exception ex)
-        {
-            _logger.LogError(ex, "Unexpected error in DeviceWorker.");
+            var cycleCts = CancellationTokenSource.CreateLinkedTokenSource(stoppingToken);
+            var cycleToken = cycleCts.Token;
+
+            var restartAfter = TimeSpan.FromHours(4);
+
+            var timerTask = Task.Delay(restartAfter, stoppingToken)
+                .ContinueWith(_ => cycleCts.Cancel());
+
+            var runners = GetDeviceRunners();
+
+            var tasks = runners
+                .Select(runner => runner.RunLoopAsync(cycleToken))
+                .ToList();
+
+            _logger.LogInformation("DeviceWorker started {Count} device runners.", tasks.Count);
+
+            var completed = await Task.WhenAny(Task.WhenAll(tasks), timerTask);
+
+            if (completed == timerTask)
+            {
+                cycleCts.Cancel();
+                await Task.WhenAll(tasks);
+                continue;
+            }
         }
     }
 }
