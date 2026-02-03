@@ -5,11 +5,13 @@ public sealed class DeviceWorker : BackgroundService
     private readonly ILogger<DeviceWorker> _logger;
     private readonly IDeviceRunnerFactory _deviceRunnerFactory;
     private readonly NetworkSettings _networkSettings;
+    private readonly GeneralSettings _generalSettings;
 
-    public DeviceWorker(IDeviceRunnerFactory deviceRunnerFactory, IOptions<NetworkSettings> networkSettings, ILogger<DeviceWorker> logger)
+    public DeviceWorker(IDeviceRunnerFactory deviceRunnerFactory, IOptions<NetworkSettings> networkSettings, IOptions<GeneralSettings> generalSettings, ILogger<DeviceWorker> logger)
     {
         _deviceRunnerFactory = deviceRunnerFactory;
         _networkSettings = networkSettings.Value;
+        _generalSettings = generalSettings.Value;
         _logger = logger;
     }
 
@@ -34,7 +36,7 @@ public sealed class DeviceWorker : BackgroundService
             var cycleCts = CancellationTokenSource.CreateLinkedTokenSource(stoppingToken);
             var cycleToken = cycleCts.Token;
 
-            var restartAfter = TimeSpan.FromHours(4);
+            var restartAfter = TimeSpan.FromHours(_generalSettings.soft_reset_interval_hours);
 
             var timerTask = Task.Delay(restartAfter, stoppingToken)
                 .ContinueWith(_ => cycleCts.Cancel());
