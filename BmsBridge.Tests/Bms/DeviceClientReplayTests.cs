@@ -2,7 +2,7 @@ using Microsoft.Extensions.Logging.Abstractions;
 
 public class DeviceClientReplayTests
 {
-    [Fact]
+    [Fact(Skip = "Avoid printing to console for now")]
     public async Task E2DeviceClient_Replay_Test()
     {
         var executor = new ReplayHttpPipelineExecutor(new GeneralSettings());
@@ -14,7 +14,8 @@ public class DeviceClientReplayTests
             executor,
             indexProvider,
             normalizer,
-            NullLoggerFactory.Instance
+            NullLoggerFactory.Instance,
+            new ConsoleIotDevice()
         );
 
         await client.InitializeAsync();

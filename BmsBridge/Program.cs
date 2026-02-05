@@ -44,6 +44,7 @@ builder.Services.AddSingleton<IE2IndexMappingProvider, EmbeddedE2IndexMappingPro
 builder.Services.AddSingleton<INormalizerService, NormalizerService>();
 // builder.Services.AddSingleton<IDeviceRunnerFactory, DeviceRunnerFactory>(); // prod // TODO: Make dynamic
 builder.Services.AddSingleton<IDeviceRunnerFactory, ReplayDeviceRunnerFactory>(); // test
+builder.Services.AddSingleton<IDeviceHealthRegistry, InMemoryDeviceHealthRegistry>();
 
 // Workers
 builder.Services.AddHostedService<DeviceWorker>();

@@ -36,7 +36,7 @@ public class JsonDiffTests
         List<string> ignores = new() { "name" };
 
         // Act
-        var diff = JsonDiffer.Diff(baseline, incoming, ignores);
+        var diff = JsonDiffer.Diff(baseline!, incoming!, ignores);
 
         // Expected diff
         var expectedDiffJson = """
@@ -53,7 +53,7 @@ public class JsonDiffTests
 
         // Assert
         Assert.Equal(
-            expected.ToJsonString(),
+            expected!.ToJsonString(),
             diff.ToJsonString()
         );
     }
@@ -71,7 +71,7 @@ public class JsonDiffTests
         var baseline = JsonNode.Parse(json);
         var incoming = JsonNode.Parse(json);
 
-        var diff = JsonDiffer.Diff(baseline, incoming);
+        var diff = JsonDiffer.Diff(baseline!, incoming!);
 
         Assert.Equal("{}", diff.ToJsonString());
     }
@@ -95,10 +95,10 @@ public class JsonDiffTests
         var baseline = JsonNode.Parse(baselineJson);
         var incoming = JsonNode.Parse(incomingJson);
 
-        var diff = JsonDiffer.Diff(baseline, incoming);
+        var diff = JsonDiffer.Diff(baseline!, incoming!);
 
         var expected = JsonNode.Parse("""{ "b": 2 }""");
 
-        Assert.Equal(expected.ToJsonString(), diff.ToJsonString());
+        Assert.Equal(expected!.ToJsonString(), diff.ToJsonString());
     }
 }
