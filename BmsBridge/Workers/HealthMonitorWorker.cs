@@ -5,19 +5,25 @@ public sealed class HealthMonitorWorker : BackgroundService
     private readonly IDeviceHealthRegistry _deviceHealthRegistry;
     private readonly ICircuitBreakerService _circuitBreaker;
     private readonly IHealthTelemetryService _healthTelemetryService;
+    private readonly IRunnerControlService _runnerControlService;
+    private readonly IDeviceRunnerRegistry _deviceRunnerRegistry;
 
     public HealthMonitorWorker(
         IDeviceHealthRegistry deviceHealthRegistry,
         IIotDevice iotDevice,
         ILogger<DeviceWorker> logger,
         ICircuitBreakerService circuitBreaker,
-        IHealthTelemetryService healthTelemetryService)
+        IHealthTelemetryService healthTelemetryService,
+        IRunnerControlService runnerControlService,
+        IDeviceRunnerRegistry deviceRunnerRegistry)
     {
         _deviceHealthRegistry = deviceHealthRegistry;
         _iotDevice = iotDevice;
         _logger = logger;
         _circuitBreaker = circuitBreaker;
         _healthTelemetryService = healthTelemetryService;
+        _runnerControlService = runnerControlService;
+        _deviceRunnerRegistry = deviceRunnerRegistry;
     }
 
     protected override async Task ExecuteAsync(CancellationToken stoppingToken)
@@ -31,7 +37,7 @@ public sealed class HealthMonitorWorker : BackgroundService
             foreach (var snapshot in snapshots)
             {
                 _circuitBreaker.EvaluateAndUpdate(snapshot);
-                _logger.LogInformation("Device health: {@Snap}", snapshot);
+                _runnerControlService.ApplyControl(snapshot);
             }
 
             await _healthTelemetryService.SendSnapshotAsync(snapshots, stoppingToken);

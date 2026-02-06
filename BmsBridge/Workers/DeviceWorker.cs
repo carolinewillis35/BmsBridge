@@ -6,13 +6,20 @@ public sealed class DeviceWorker : BackgroundService
     private readonly IDeviceRunnerFactory _deviceRunnerFactory;
     private readonly NetworkSettings _networkSettings;
     private readonly GeneralSettings _generalSettings;
+    private readonly IDeviceRunnerRegistry _deviceRunnerRegistry;
 
-    public DeviceWorker(IDeviceRunnerFactory deviceRunnerFactory, IOptions<NetworkSettings> networkSettings, IOptions<GeneralSettings> generalSettings, ILogger<DeviceWorker> logger)
+    public DeviceWorker(
+        IDeviceRunnerFactory deviceRunnerFactory,
+        IOptions<NetworkSettings> networkSettings,
+        IOptions<GeneralSettings> generalSettings,
+        ILogger<DeviceWorker> logger,
+        IDeviceRunnerRegistry deviceRunnerRegistry)
     {
         _deviceRunnerFactory = deviceRunnerFactory;
         _networkSettings = networkSettings.Value;
         _generalSettings = generalSettings.Value;
         _logger = logger;
+        _deviceRunnerRegistry = deviceRunnerRegistry;
     }
 
     private IEnumerable<IDeviceRunner> GetDeviceRunners()
@@ -22,7 +29,9 @@ public sealed class DeviceWorker : BackgroundService
         _logger.LogInformation("Loading {Count} devices", _networkSettings.bms_devices.Count);
         foreach (var deviceConfig in _networkSettings.bms_devices)
         {
-            deviceRunners.Add(_deviceRunnerFactory.Create(deviceConfig));
+            var device = _deviceRunnerFactory.Create(deviceConfig);
+            _deviceRunnerRegistry.RegisterDevice(device);
+            deviceRunners.Add(device);
             _logger.LogInformation("Device: IP={IP}, Type={Type}", deviceConfig.IP, deviceConfig.DeviceType);
         }
 

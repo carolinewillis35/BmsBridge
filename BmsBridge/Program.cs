@@ -47,6 +47,8 @@ builder.Services.AddSingleton<IDeviceRunnerFactory, DeviceRunnerFactory>(); // p
 builder.Services.AddSingleton<IDeviceHealthRegistry, InMemoryDeviceHealthRegistry>();
 builder.Services.AddSingleton<ICircuitBreakerService, CircuitBreakerService>();
 builder.Services.AddSingleton<IHealthTelemetryService, HealthTelemetryService>();
+builder.Services.AddSingleton<IRunnerControlService, RunnerControlService>();
+builder.Services.AddSingleton<IDeviceRunnerRegistry, DeviceRunnerRegistry>();
 
 // Workers
 builder.Services.AddHostedService<DeviceWorker>();

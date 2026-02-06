@@ -8,6 +8,11 @@ public abstract class BaseDeviceRunner : IDeviceRunner
     protected readonly IIotDevice _iotDevice;
     protected readonly ILogger _logger;
     protected IDeviceClient? _bmsClient;
+    private readonly object _stateLock = new();
+    private RunnerState _state = RunnerState.Running;
+    private CancellationTokenSource? _executionCts;
+
+    public string DeviceIp => _endpoint.Host;
 
     public BaseDeviceRunner(
         Uri endpoint,
@@ -38,24 +43,109 @@ public abstract class BaseDeviceRunner : IDeviceRunner
     public virtual async Task RunLoopAsync(CancellationToken ct)
     {
         EnsureClient();
-
         await _bmsClient!.InitializeAsync(ct);
 
         while (!ct.IsCancellationRequested)
         {
+            CancellationToken executionCt;
+
+            lock (_stateLock)
+            {
+                _executionCts?.Cancel();
+                _executionCts?.Dispose();
+                _executionCts = null;
+
+                if (_state == RunnerState.Paused)
+                {
+                    executionCt = CancellationToken.None;
+                }
+                else
+                {
+                    _executionCts =
+                        CancellationTokenSource.CreateLinkedTokenSource(ct);
+
+                    if (_state == RunnerState.ProbeOnly)
+                    {
+                        _executionCts.CancelAfter(TimeSpan.FromSeconds(30));
+                    }
+
+                    executionCt = _executionCts.Token;
+                }
+            }
+
+            if (executionCt == CancellationToken.None)
+            {
+                await Task.Delay(5_000, ct);
+                continue;
+            }
+
             try
             {
-                await _bmsClient.PollAsync(ct);
+                await _bmsClient.PollAsync(executionCt);
+            }
+            catch (OperationCanceledException)
+            {
+                lock (_stateLock)
+                {
+                    if (_state == RunnerState.ProbeOnly)
+                    {
+                        _state = RunnerState.Paused;
+                        _logger.LogInformation(
+                            "Probe window elapsed for {Ip}. Waiting for health controller.",
+                            DeviceIp);
+                    }
+                    else
+                    {
+                        _logger.LogWarning(
+                            "Execution cancelled for device {Ip}.",
+                            DeviceIp);
+                    }
+                }
             }
             catch (Exception ex)
             {
-                _logger.LogError(ex, $"An error occured while polling at {_endpoint}");
+                _logger.LogError(
+                    ex,
+                    "Unexpected error while polling device {Ip}.",
+                    DeviceIp);
             }
 
-            // temporary to avoid flooding the console
             await Task.Delay(30_000, ct);
         }
     }
 
     protected abstract IDeviceClient CreateClient();
+
+    public void Pause()
+    {
+        lock (_stateLock)
+        {
+            if (_state != RunnerState.Paused)
+            {
+                _logger.LogWarning("Pausing runner for {Ip}", DeviceIp);
+                _state = RunnerState.Paused;
+            }
+        }
+    }
+
+    public void Resume()
+    {
+        lock (_stateLock)
+        {
+            if (_state != RunnerState.Running)
+            {
+                _logger.LogInformation("Resuming runner for {Ip}", DeviceIp);
+                _state = RunnerState.Running;
+            }
+        }
+    }
+
+    public void AllowProbe()
+    {
+        lock (_stateLock)
+        {
+            _logger.LogInformation("Allowing probe for {Ip}", DeviceIp);
+            _state = RunnerState.ProbeOnly;
+        }
+    }
 }

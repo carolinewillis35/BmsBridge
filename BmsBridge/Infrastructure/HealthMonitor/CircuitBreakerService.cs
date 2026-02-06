@@ -13,7 +13,7 @@ public sealed class CircuitBreakerService : ICircuitBreakerService
         IDeviceHealthRegistry registry,
         ILogger<CircuitBreakerService> logger)
     {
-        _failureThreshold = generalSettings.Value.http_retry_count + 1;
+        _failureThreshold = generalSettings.Value.http_retry_count;
         _registry = registry;
         _logger = logger;
     }
