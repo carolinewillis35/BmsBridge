@@ -37,6 +37,7 @@ public abstract class BaseDeviceOperation : IDeviceOperation
     {
         var request = BuildRequest();
 
+        // _logger.LogDebug($"Sending {Name} command to {Endpoint.Host}");
         var httpResult = await executor.SendAsync(Endpoint.Host, request, ct, Name);
 
         if (!httpResult.Success)
@@ -47,7 +48,14 @@ public abstract class BaseDeviceOperation : IDeviceOperation
             );
         }
 
-        return ParseResponse(httpResult.Data!);
+        var result = ParseResponse(httpResult.Data!);
+
+        if (!result.Success)
+        {
+            _logger.LogError($"Operation failed: {result.ErrorType}, {result.ErrorMessage}");
+        }
+
+        return result;
     }
 
     protected abstract JsonArray? GetRelevantData(JsonNode? json);

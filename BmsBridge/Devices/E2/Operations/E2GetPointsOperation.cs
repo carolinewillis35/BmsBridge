@@ -39,6 +39,6 @@ public sealed class E2GetPointsOperation : E2BaseDeviceOperation
 
     protected override JsonArray? GetRelevantData(JsonNode? json)
     {
-        return json?["data"]?["result"] as JsonArray;
+        return json?["result"]?["data"] as JsonArray;
     }
 }

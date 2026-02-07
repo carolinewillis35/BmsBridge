@@ -81,7 +81,11 @@ public abstract class BaseDeviceRunner : IDeviceRunner
 
             try
             {
+                _logger.LogInformation($"Device {DeviceIp} started polling.");
+                var sw = System.Diagnostics.Stopwatch.StartNew();
                 await _bmsClient.PollAsync(executionCt);
+                sw.Stop();
+                _logger.LogInformation($"Device {DeviceIp} finished polling. Took {sw.Elapsed.TotalSeconds:F2} seconds");
             }
             catch (OperationCanceledException)
             {

@@ -38,10 +38,10 @@ public sealed class HealthMonitorWorker : BackgroundService
             {
                 _circuitBreaker.EvaluateAndUpdate(snapshot);
                 _runnerControlService.ApplyControl(snapshot);
+                _logger.LogDebug("Device health: {@Snap}", snapshot);
             }
 
             await _healthTelemetryService.SendSnapshotAsync(snapshots, stoppingToken);
-
         }
     }
 }

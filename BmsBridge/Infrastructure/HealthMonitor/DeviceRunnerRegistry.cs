@@ -12,7 +12,7 @@ public sealed class DeviceRunnerRegistry : IDeviceRunnerRegistry
 
     public void RegisterDevice(IDeviceRunner deviceRunner)
     {
-        _logger.LogInformation($"Registering device {deviceRunner.DeviceIp} to health registry.");
+        _logger.LogInformation($"Registering device {deviceRunner.DeviceIp} to device registry.");
 
         _devices.AddOrUpdate(
             deviceRunner.DeviceIp,
