@@ -43,7 +43,15 @@ public abstract class BaseDeviceRunner : IDeviceRunner
     public virtual async Task RunLoopAsync(CancellationToken ct)
     {
         EnsureClient();
-        await _bmsClient!.InitializeAsync(ct);
+        try
+        {
+            await _bmsClient!.InitializeAsync(ct);
+        }
+        catch (Exception ex)
+        {
+            _logger.LogCritical(ex, "oops");
+            await Task.Delay(60_000, ct);
+        }
 
         while (!ct.IsCancellationRequested)
         {

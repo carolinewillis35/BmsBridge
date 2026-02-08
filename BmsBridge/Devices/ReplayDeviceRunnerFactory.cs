@@ -56,6 +56,15 @@ public sealed class ReplayDeviceRunnerFactory : IDeviceRunnerFactory
                     _loggerFactory,
                     _iotDevice
                 );
+            case BmsType.EmersonE3:
+                return new E3DeviceRunner(
+                    new Uri($"http://{deviceSettings.IP}/cgi-bin/mgw.cgi"),
+                    pipelineExecutor,
+                    _indexProvider,
+                    _normalizer,
+                    _loggerFactory,
+                    _iotDevice
+                );
             default:
                 throw new NotImplementedException($"Device type {deviceSettings.DeviceType} is not implemented.");
         }
