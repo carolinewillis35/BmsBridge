@@ -46,10 +46,20 @@ var version = Assembly
 Log.Information("Starting version {Version}", version);
 
 // Singletons
-// builder.Services.AddSingleton<IIotDevice, AzureIotDevice>(); // prod // TODO: Make dynamic
-builder.Services.AddSingleton<IIotDevice, ConsoleIotDevice>(); // test
+if (builder.Environment.IsDevelopment())
+{
+    builder.Services.AddSingleton<IIotDevice, VoidIotDevice>();
+    // or:
+    // builder.Services.AddSingleton<IIotDevice, ConsoleIotDevice>();
+    // or:
+    // builder.Services.AddSingleton<IIotDevice, AzureIotDevice>();
+}
+else
+{
+    builder.Services.AddSingleton<IIotDevice, AzureIotDevice>();
+}
 
-if (!RuntimeInformation.IsOSPlatform(OSPlatform.Linux))
+if (RuntimeInformation.IsOSPlatform(OSPlatform.Windows))
 {
     builder.Services.AddSingleton<ICertificateSource>(sp =>
     {
@@ -59,17 +69,31 @@ if (!RuntimeInformation.IsOSPlatform(OSPlatform.Linux))
 }
 else
 {
-    builder.Services.AddSingleton<ICertificateSource>(sp =>
-        new PfxCertificateSource("/home/henry/Projects/BmsBridge/BmsBridge/DevelopmentKeys/CertificateTest.pfx")); // TODO: make dynamic/from user file
+    var certPath = Path.Combine(
+        builder.Environment.ContentRootPath,
+        "DevelopmentKeys",
+        "CertificateTest.pfx"
+    );
+
+    builder.Services.AddSingleton<ICertificateSource>(
+        _ => new PfxCertificateSource(certPath)
+    );
 }
+
 builder.Services.AddSingleton<CertificateProvider>();
 builder.Services.AddSingleton<KeyvaultService>();
 builder.Services.AddSingleton<DpsService>();
 builder.Services.AddSingleton<IE2IndexMappingProvider, EmbeddedE2IndexMappingProvider>();
 builder.Services.AddSingleton<INormalizerService, NormalizerService>();
 
-// builder.Services.AddSingleton<IDeviceRunnerFactory, DeviceRunnerFactory>(); // prod // TODO: Make dynamic
-builder.Services.AddSingleton<IDeviceRunnerFactory, ReplayDeviceRunnerFactory>(); // test
+if (args.Contains("--replay", StringComparer.OrdinalIgnoreCase) && builder.Environment.IsDevelopment())
+{
+    builder.Services.AddSingleton<IDeviceRunnerFactory, ReplayDeviceRunnerFactory>();
+}
+else
+{
+    builder.Services.AddSingleton<IDeviceRunnerFactory, DeviceRunnerFactory>();
+}
 
 builder.Services.AddSingleton<IDeviceHealthRegistry, InMemoryDeviceHealthRegistry>();
 builder.Services.AddSingleton<ICircuitBreakerService, CircuitBreakerService>();

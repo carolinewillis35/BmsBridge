@@ -16,8 +16,8 @@ test:
 run:
 	dotnet run --project $(PROJECT)
 
-capture:
-	dotnet run --project $(PROJECT) --test-operator
+replay:
+	dotnet run --project $(PROJECT) --replay
 
 clean:
 	dotnet clean $(SOLUTION)

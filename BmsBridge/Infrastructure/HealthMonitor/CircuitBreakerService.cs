@@ -41,8 +41,8 @@ public sealed class CircuitBreakerService : ICircuitBreakerService
         if (snapshot.ConsecutiveFailures >= _failureThreshold)
         {
             _logger.LogWarning(
-                "Circuit OPEN for {Ip} due to {Failures} consecutive failures",
-                snapshot.DeviceIp, snapshot.ConsecutiveFailures);
+                "Circuit OPEN for {Ip} due to {Failures} consecutive failures for {Duration} minutes",
+                snapshot.DeviceIp, snapshot.ConsecutiveFailures, _openDuration.TotalMinutes);
 
             _registry.SetCircuitState(snapshot.DeviceIp, DeviceCircuitState.Open);
         }
