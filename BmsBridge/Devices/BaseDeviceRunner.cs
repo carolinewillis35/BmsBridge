@@ -49,8 +49,8 @@ public abstract class BaseDeviceRunner : IDeviceRunner
         }
         catch (Exception ex)
         {
-            _logger.LogCritical(ex, "oops");
-            await Task.Delay(60_000, ct);
+            _logger.LogCritical(ex, "Failed to initialize device. Waiting 5 minutes before retrying.");
+            await Task.Delay(300_000, ct);
         }
 
         while (!ct.IsCancellationRequested)
@@ -91,9 +91,11 @@ public abstract class BaseDeviceRunner : IDeviceRunner
             {
                 _logger.LogInformation($"Device {DeviceIp} started polling.");
                 var sw = System.Diagnostics.Stopwatch.StartNew();
-                await _bmsClient.PollAsync(executionCt);
+                await _bmsClient!.PollAsync(executionCt);
                 sw.Stop();
                 _logger.LogInformation($"Device {DeviceIp} finished polling. Took {sw.Elapsed.TotalSeconds:F2} seconds");
+                _logger.LogInformation($"Device {DeviceIp} is cooling down for 1 minute.");
+                await Task.Delay(60_000, ct);
             }
             catch (OperationCanceledException)
             {
@@ -120,9 +122,10 @@ public abstract class BaseDeviceRunner : IDeviceRunner
                     ex,
                     "Unexpected error while polling device {Ip}.",
                     DeviceIp);
+                _logger.LogWarning($"Device {DeviceIp} is cooling down for 5 minutes after an unexpected error.");
+                await Task.Delay(300_000, ct);
             }
 
-            await Task.Delay(30_000, ct);
         }
     }
 

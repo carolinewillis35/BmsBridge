@@ -50,8 +50,6 @@ public abstract class E3BaseDeviceOperation : BaseDeviceOperation
         // Serialize to JSON exactly like Python
         var json = JsonSerializer.Serialize(payload);
 
-        _logger.LogCritical(json);
-
         // Encode into ?m=... exactly like your working operations
         var formDict = new Dictionary<string, string>
         {

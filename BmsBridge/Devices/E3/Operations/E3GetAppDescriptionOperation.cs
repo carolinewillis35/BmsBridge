@@ -7,19 +7,19 @@ public sealed class E3GetAppDescriptionOperation : E3BaseDeviceOperation
     protected override JsonObject? Parameters => _parameters;
     private readonly JsonObject _parameters;
 
-    public E3GetAppDescriptionOperation(Uri endpoint, string sessionId, ILoggerFactory loggerFactory)
+    public E3GetAppDescriptionOperation(Uri endpoint, string sessionId, string iid, ILoggerFactory loggerFactory)
         : base(endpoint, loggerFactory)
     {
         _parameters = new JsonObject
         {
-            ["iid"] = "1748892653",
+            ["iid"] = iid,
             ["sid"] = sessionId,
         };
     }
 
     protected override JsonArray? GetRelevantData(JsonNode? json)
     {
-        var response = json?["result"]?["groups"] as JsonArray;
+        var response = json?["result"]?["points"] as JsonArray;
 
         if (response is null)
             return new JsonArray();

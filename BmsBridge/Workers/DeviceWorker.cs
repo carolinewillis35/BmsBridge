@@ -52,11 +52,12 @@ public sealed class DeviceWorker : BackgroundService
 
             var runners = GetDeviceRunners();
 
+            _logger.LogInformation("DeviceWorker is starting {Count} device runners.", runners.Count());
+
             var tasks = runners
                 .Select(runner => runner.RunLoopAsync(cycleToken))
                 .ToList();
 
-            _logger.LogInformation("DeviceWorker started {Count} device runners.", tasks.Count);
 
             var completed = await Task.WhenAny(Task.WhenAll(tasks), timerTask);
 

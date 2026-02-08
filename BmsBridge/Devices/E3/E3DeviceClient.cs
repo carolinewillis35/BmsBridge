@@ -9,14 +9,8 @@ public sealed class E3DeviceClient : BaseDeviceClient
     private JsonArray _polledData = new();
 
     // Oneshot objects
-    private List<JsonObject> _networkDevices = new();
-    private List<JsonObject> _appTypes = new();
     private List<JsonObject> _systemInventory = new();
-    private List<string> _logGroups = new();
-    private List<JsonObject> _loggedApps = new();
-    private List<JsonObject> _groups = new();
     private List<JsonObject> _appDesc = new();
-    private JsonObject? _systemInfo = new();
     private string? _sessionID;
 
     // Polling objects
@@ -41,37 +35,26 @@ public sealed class E3DeviceClient : BaseDeviceClient
     {
         _logger.LogInformation($"Initializing E3 device client at {_endpoint}");
 
-        // _networkDevices = await GetNetworkSummaryAsync(ct);
-        // _appTypes = await GetAppTypesAsync(ct);
         _sessionID = await GetSessionIDAsync(ct);
-        // _groups = await GetGroupsAsync(ct);
-        // _systemInventory = await GetSystemInventoryAsync(ct);
-        // _systemInfo = await GetSystemInformationAsync(ct);
-        // _logGroups = await GetLogGroupsAsync(ct);
-        // _loggedApps = await GetLoggedAppsAsync(ct);
-        _appDesc = await GetAppDescriptionsAsync(ct);
+        _systemInventory = await GetSystemInventoryAsync(ct);
+        _systemInventory.ForEach(_polledData.Add);
 
-        // _networkDevices.ForEach(_polledData.Add);
-        // _appTypes.ForEach(_polledData.Add);
-        // _systemInventory.ForEach(_polledData.Add);
-        // _polledData.Add(_systemInfo);
-
-        _initialized = true;
     }
 
     public override async Task PollAsync(CancellationToken ct = default)
     {
-        await EnsureInitialized();
-        // await Task.Delay(60_000, ct);
+        await ClearPollingData(ct);
 
-        // _alarms = await GetAlarmsAsync(ct);
+        _appDesc = await GetAppDescriptionsAsync(ct);
+        _alarms = await GetAlarmsAsync(ct);
 
-        // _alarms.ForEach(_polledData.Add);
+        _alarms.ForEach(_polledData.Add);
+        _appDesc.ForEach(_polledData.Add);
 
         var diff = _dataWarehouse.ProcessIncoming(_polledData);
         await _iotDevice.SendMessageAsync(diff, ct);
 
-        ClearPollingData();
+        _initialized = true;
     }
 
     // ------------------------------------------------------------
@@ -92,8 +75,44 @@ public sealed class E3DeviceClient : BaseDeviceClient
 
     private async Task<List<JsonObject>> GetAppDescriptionsAsync(CancellationToken ct = default)
     {
-        var op = new E3GetAppDescriptionOperation(_endpoint, _sessionID!, _loggerFactory);
-        return await NormalizeJsonArrayOp(op, "AppDescriptions", ct);
+        var outList = new List<JsonObject>();
+
+        foreach (var entry in _systemInventory)
+        {
+            var iid = entry?["data"]?["iid"]?.GetValue<string>();
+            var appname = entry?["data"]?["appname"]?.GetValue<string>();
+
+            if (string.IsNullOrEmpty(iid) || string.IsNullOrEmpty(appname))
+                continue;
+
+            var op = new E3GetAppDescriptionOperation(_endpoint, _sessionID!, iid, _loggerFactory);
+            var dataResult = await NormalizeJsonArrayOp(op, appname, ct);
+
+            foreach (var result in dataResult)
+            {
+                var trimmedData = new JsonObject
+                {
+                    ["device_key"] = result["device_key"]?.DeepClone(),
+                    ["ip"] = result["ip"]?.DeepClone()
+                };
+
+                if (result["data"] is JsonObject dataObj)
+                {
+                    var newData = new JsonObject();
+
+                    if (dataObj.TryGetPropertyValue("name", out var name))
+                        newData["name"] = name!.DeepClone();
+
+                    if (dataObj.TryGetPropertyValue("val", out var val))
+                        newData["val"] = val!.DeepClone();
+
+                    trimmedData["data"] = newData;
+                }
+
+                outList.Add(trimmedData);
+            }
+        }
+        return outList;
     }
 
     private async Task<List<JsonObject>> GetSystemInventoryAsync(CancellationToken ct = default)
@@ -155,19 +174,6 @@ public sealed class E3DeviceClient : BaseDeviceClient
         return sid;
     }
 
-    private async Task<List<JsonObject>> GetLoggedAppsAsync(CancellationToken ct = default)
-    {
-
-        var outList = new List<JsonObject>();
-
-        foreach (var lgiid in _logGroups)
-        {
-            var op = new E3GetAppsForLogGroupOperation(_endpoint, lgiid, _loggerFactory);
-            var result = await op.ExecuteAsync(_pipelineExecutor, ct);
-        }
-        return outList;
-    }
-
     private async Task<JsonObject?> GetSystemInformationAsync(CancellationToken ct = default)
     {
         var op = new E3GetSystemInformationOperation(_endpoint, _loggerFactory);
@@ -226,9 +232,13 @@ public sealed class E3DeviceClient : BaseDeviceClient
             await InitializeAsync();
     }
 
-    private void ClearPollingData()
+    private async Task ClearPollingData(CancellationToken ct = default)
     {
+        if (!_initialized)
+            return;
+
         _alarms = new();
         _polledData = new();
+        await GetSessionIDAsync(ct);
     }
 }
