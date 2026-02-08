@@ -18,9 +18,16 @@ public sealed class DanfossDeviceClient : BaseDeviceClient
 
     // Polling data objects
     private JsonArray _polledData = new();
+    private List<JsonObject> _hvac = new();
     private List<JsonObject> _hvacs = new();
     private List<JsonObject> _devices = new();
+    private List<JsonObject> _suctionGroups = new();
     private List<JsonObject> _lightingZones = new();
+    private List<JsonObject> _hvacUnits = new();
+    private List<JsonObject> _hvacService = new();
+    private List<JsonObject> _circuits = new();
+    private List<JsonObject> _condensers = new();
+    private JsonObject _meters = new();
 
     public DanfossDeviceClient(
         Uri endpoint,
@@ -53,7 +60,6 @@ public sealed class DanfossDeviceClient : BaseDeviceClient
             // _inputs = await ReadInputsAsync(ct);
             // _relays = await ReadRelaysAsync(ct);
             // _var_outs = await ReadVarOutsAsync(ct);
-            // _lighting = await ReadLightingAsync(ct);
 
             _polledData = new();
         }
@@ -70,20 +76,35 @@ public sealed class DanfossDeviceClient : BaseDeviceClient
         // _inputs.ForEach(_polledData.Add);
         // _relays.ForEach(_polledData.Add);
         // _var_outs.ForEach(_polledData.Add);
-        // _lighting.ForEach(_polledData.Add);
     }
 
     public override async Task PollAsync(CancellationToken ct = default)
     {
         await EnsureInitialized();
 
-        // _hvacs = await ReadHvacAsync(ct);
+        // _lighting = await ReadLightingAsync(ct);
+        // _hvac = await ReadHvacAsync(ct);
+        // _hvacs = await ReadHvacsAsync(ct);
+        // _hvacUnits = await ReadHvacUnitsAsync(ct);
+        // _hvacService = await ReadHvacServiceAsync(ct);
         // _devices = await ReadDevicesAsync(ct);
+        // _suctionGroups = await ReadSuctionGroupsAsync(ct);
+        // _condensers = await ReadCondensersAsync(ct);
+        // _circuits = await ReadCircuitsAsync(ct);
         // _lightingZones = await ReadLightingZonesAsync(ct);
+        _meters = await ReadMetersAsync(ct);
 
+        // _hvac.ForEach(_polledData.Add);
         // _hvacs.ForEach(_polledData.Add);
+        // _hvacUnits.ForEach(_polledData.Add);
+        // _hvacService.ForEach(_polledData.Add);
         // _devices.ForEach(_polledData.Add);
+        // _suctionGroups.ForEach(_polledData.Add);
+        // _condensers.ForEach(_polledData.Add);
+        // _circuits.ForEach(_polledData.Add);
+        // _lighting.ForEach(_polledData.Add);
         // _lightingZones.ForEach(_polledData.Add);
+        _polledData.Add(_meters);
 
         var diff = _dataWarehouse.ProcessIncoming(_polledData);
         await _iotDevice.SendMessageAsync(diff, ct);
@@ -174,6 +195,20 @@ public sealed class DanfossDeviceClient : BaseDeviceClient
         return DynamicAddressParse(result);
     }
 
+    private async Task<JsonObject> ReadMetersAsync(CancellationToken ct = default)
+    {
+        var op = new DanfossReadMetersOperation(_endpoint, _loggerFactory);
+        return await ControllerLevelParse(op, ct, "meters");
+    }
+
+    private async Task<List<JsonObject>> ReadHvacsAsync(CancellationToken ct = default)
+    {
+        var op = new DanfossReadHvacsOperation(_endpoint, _loggerFactory);
+        var result = await op.ExecuteAsync(_pipelineExecutor, ct);
+
+        return DynamicAddressParse(result);
+    }
+
     private async Task<List<JsonObject>> ReadLightingZonesAsync(CancellationToken ct = default)
     {
         var outList = new List<JsonObject>();
@@ -188,6 +223,139 @@ public sealed class DanfossDeviceClient : BaseDeviceClient
             var op = new DanfossReadLightingZoneOperation(_endpoint, zoneIndex, _loggerFactory);
             var result = await ControllerLevelParse(op, ct, $"lighting_zone:i{zoneIndex}");
             outList.Add(result);
+        }
+
+        return outList;
+    }
+
+    private async Task<List<JsonObject>> ReadSuctionGroupsAsync(CancellationToken ct = default)
+    {
+        var outList = new List<JsonObject>();
+
+        var seen = new HashSet<(string rackId, string suctionId)>();
+
+        foreach (var device in _devices)
+        {
+            var suctionId = device["data"]?["@suction_id"]?.GetValue<string>();
+            var rackId = device["data"]?["@rack_id"]?.GetValue<string>();
+
+            if (suctionId is null || rackId is null)
+                continue;
+
+            var key = (rackId, suctionId);
+            if (!seen.Add(key))
+                continue;
+
+            var op = new DanfossReadSuctionGroupOperation(_endpoint, rackId, suctionId, _loggerFactory);
+            var result = await ControllerLevelParse(op, ct, $"suction_group:rid{rackId}:sid{suctionId}");
+            outList.Add(result);
+        }
+
+        return outList;
+    }
+
+    private async Task<List<JsonObject>> ReadCondensersAsync(CancellationToken ct = default)
+    {
+        var outList = new List<JsonObject>();
+
+        var seen = new HashSet<string>();
+
+        foreach (var suct in _suctionGroups)
+        {
+            var rackId = suct["data"]?["@rack_id"]?.GetValue<string>();
+
+            if (rackId is null)
+                continue;
+
+            if (!seen.Add(rackId))
+                continue;
+
+            var op = new DanfossReadCondenserOperation(_endpoint, rackId, _loggerFactory);
+            var result = await ControllerLevelParse(op, ct, $"condenser:rid{rackId}");
+            outList.Add(result);
+        }
+
+        return outList;
+    }
+
+    private async Task<List<JsonObject>> ReadCircuitsAsync(CancellationToken ct = default)
+    {
+        var outList = new List<JsonObject>();
+
+        var seen = new HashSet<(string rackId, string suctionId, string stringCircuit)>();
+
+        foreach (var suct in _suctionGroups)
+        {
+            var data = suct["data"]?.AsObject();
+            if (data is null)
+                continue;
+
+            var suctionId = data["@suction_id"]?.GetValue<string>();
+            var rackId = data["@rack_id"]?.GetValue<string>();
+            var maxCircuitsStr = data["num_circuits"]?.GetValue<string>();
+
+            if (string.IsNullOrWhiteSpace(suctionId) ||
+                string.IsNullOrWhiteSpace(rackId) ||
+                string.IsNullOrWhiteSpace(maxCircuitsStr))
+            {
+                continue;
+            }
+
+            if (!int.TryParse(maxCircuitsStr, out var totalCircuits))
+                continue;
+
+            for (int i = 1; i <= totalCircuits; i++)
+            {
+                var stringCircuit = i.ToString();
+
+                var key = (rackId, suctionId, stringCircuit);
+                if (!seen.Add(key))
+                    continue;
+
+                var op = new DanfossReadCircuitOperation(_endpoint, rackId, suctionId, stringCircuit, _loggerFactory);
+                var result = await ControllerLevelParse(op, ct, $"circuit:rid{rackId}:sid{suctionId}:cid{stringCircuit}");
+
+                outList.Add(result);
+            }
+        }
+
+        return outList;
+    }
+
+    private async Task<List<JsonObject>> ReadHvacUnitsAsync(CancellationToken ct = default)
+    {
+        var outList = new List<JsonObject>();
+
+        foreach (var hvacEntry in _hvacs)
+        {
+            var ahindex = hvacEntry["data"]?["@ahindex"]?.GetValue<string>();
+
+            if (ahindex is null)
+                continue;
+
+            var op = new DanfossReadHvacUnitOperation(_endpoint, ahindex, _loggerFactory);
+            var result = await op.ExecuteAsync(_pipelineExecutor, ct);
+            var data = DynamicAddressParse(result);
+            data.ForEach(outList.Add);
+        }
+
+        return outList;
+    }
+
+    private async Task<List<JsonObject>> ReadHvacServiceAsync(CancellationToken ct = default)
+    {
+        var outList = new List<JsonObject>();
+
+        foreach (var hvacEntry in _hvacs)
+        {
+            var ahindex = hvacEntry["data"]?["@ahindex"]?.GetValue<string>();
+
+            if (ahindex is null)
+                continue;
+
+            var op = new DanfossReadHvacServiceOperation(_endpoint, ahindex, _loggerFactory);
+            var data = await ControllerLevelParse(op, ct, $"ahi{ahindex}");
+            outList.Add(data);
         }
 
         return outList;
@@ -221,9 +389,16 @@ public sealed class DanfossDeviceClient : BaseDeviceClient
 
     private void ClearPollingDataObjects()
     {
+        _hvac = new();
         _hvacs = new();
+        _hvacUnits = new();
         _devices = new();
+        _suctionGroups = new();
+        _lighting = new();
         _lightingZones = new();
+        _circuits = new();
+        _condensers = new();
+        _meters = new();
     }
 
     private List<JsonObject> DynamicAddressParse(DeviceOperationResult<JsonNode?> result)
