@@ -33,6 +33,7 @@ public sealed class DanfossDeviceClient : BaseDeviceClient
     private List<JsonObject> _input = new();
     private List<JsonObject> _relay = new();
     private List<JsonObject> _var_out = new();
+    // private List<JsonObject> _lists = new();
 
     public DanfossDeviceClient(
         Uri endpoint,
@@ -102,6 +103,9 @@ public sealed class DanfossDeviceClient : BaseDeviceClient
         _input = await ReadInputAsync(ct);
         _var_out = await ReadVarOutAsync(ct);
         _relay = await ReadRelayAsync(ct);
+
+        // DISABLED
+        // _lists = await ReadListAsync(ct);
 
         _hvac.ForEach(_polledData.Add);
         _hvacs.ForEach(_polledData.Add);
@@ -295,6 +299,32 @@ public sealed class DanfossDeviceClient : BaseDeviceClient
         var result = await op.ExecuteAsync(_pipelineExecutor, ct);
 
         return DynamicAddressParse(result);
+    }
+
+    private async Task<List<JsonObject>> ReadListAsync(CancellationToken ct = default)
+    {
+        var op = new DanfossReadListOperation(
+                endpoint: _endpoint,
+                nodeType: "2",
+                tableAddress: "20021",
+                node: "0",
+                combo: "6",
+                index: "1",
+                bpIndex: "2",
+                argument1: "1",
+                useParent: "0",
+                configType: "0",
+                sType: "1",
+                subGroup: "0",
+                page: "0",
+                oldConfigType: "0",
+                isConfigure: "0",
+                group: "0",
+                loggerFactory: _loggerFactory
+            );
+        var result = await op.ExecuteAsync(_pipelineExecutor, ct);
+
+        return new List<JsonObject>();
     }
 
     private async Task<JsonObject> ReadMetersAsync(CancellationToken ct = default)
