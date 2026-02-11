@@ -64,9 +64,9 @@ if (builder.Environment.IsDevelopment())
 {
     // builder.Services.AddSingleton<IIotDevice, VoidIotDevice>();
     // or:
-    // builder.Services.AddSingleton<IIotDevice, ConsoleIotDevice>();
+    builder.Services.AddSingleton<IIotDevice, ConsoleIotDevice>();
     // or:
-    builder.Services.AddSingleton<IIotDevice, AzureIotDevice>();
+    // builder.Services.AddSingleton<IIotDevice, AzureIotDevice>();
 }
 else
 {
