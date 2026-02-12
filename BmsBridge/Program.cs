@@ -114,6 +114,7 @@ builder.Services.AddSingleton<ICircuitBreakerService, CircuitBreakerService>();
 builder.Services.AddSingleton<IHealthTelemetryService, HealthTelemetryService>();
 builder.Services.AddSingleton<IRunnerControlService, RunnerControlService>();
 builder.Services.AddSingleton<IDeviceRunnerRegistry, DeviceRunnerRegistry>();
+builder.Services.AddSingleton<IErrorFileService, ErrorFileService>();
 
 // Workers
 builder.Services.AddHostedService<DeviceWorker>();
@@ -121,4 +122,11 @@ builder.Services.AddHostedService<HealthMonitorWorker>();
 
 
 var app = builder.Build();
+
+using (var scope = app.Services.CreateScope())
+{
+    var svc = scope.ServiceProvider.GetRequiredService<IErrorFileService>();
+    await svc.CleanupAllAsync();
+}
+
 app.Run();

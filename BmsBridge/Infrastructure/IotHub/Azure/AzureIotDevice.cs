@@ -9,6 +9,7 @@ public sealed class AzureIotDevice : IIotDevice, IAsyncDisposable
     private readonly ILogger<AzureIotDevice> _logger;
     private readonly DpsService _dpsService;
     private readonly SemaphoreSlim _connectionLock = new(1, 1);
+    private readonly IErrorFileService _errorFileService;
 
     private const int MaxMessageBytes = 252_000;
 
@@ -16,10 +17,11 @@ public sealed class AzureIotDevice : IIotDevice, IAsyncDisposable
 
     public bool IsConnected { get; private set; }
 
-    public AzureIotDevice(DpsService dpsService, ILogger<AzureIotDevice> logger)
+    public AzureIotDevice(DpsService dpsService, ILogger<AzureIotDevice> logger, IErrorFileService errorFileService)
     {
         _dpsService = dpsService;
         _logger = logger;
+        _errorFileService = errorFileService;
     }
 
     public async Task ConnectAsync(CancellationToken ct = default)
@@ -43,6 +45,7 @@ public sealed class AzureIotDevice : IIotDevice, IAsyncDisposable
             _deviceClient.SetConnectionStatusChangesHandler(OnConnectionStatusChanged);
 
             await _deviceClient.OpenAsync(ct);
+            await _errorFileService.RemoveAsync("IOTHUB");
             _logger.LogInformation("Azure IoT device has been connected successfully.");
         }
         finally
@@ -153,6 +156,7 @@ public sealed class AzureIotDevice : IIotDevice, IAsyncDisposable
             catch (IotHubException ex)
             {
                 _logger.LogError(ex, "Failed to send {payload} to Azure IotHub.", payload);
+                await _errorFileService.CreateBlankAsync("IOTHUB");
                 IsConnected = false;
                 throw;
             }
