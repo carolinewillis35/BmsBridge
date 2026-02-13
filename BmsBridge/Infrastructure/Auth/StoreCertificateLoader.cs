@@ -1,5 +1,7 @@
 using System.Security.Cryptography.X509Certificates;
 using Microsoft.Extensions.Options;
+using System.Security.Principal;
+using System.Runtime.InteropServices;
 
 public sealed class StoreCertificateSource : ICertificateSource
 {
@@ -19,6 +21,10 @@ public sealed class StoreCertificateSource : ICertificateSource
     public X509Certificate2? Load()
     {
         _logger.LogInformation("Opening CurrentUser My certificate store.");
+        if (RuntimeInformation.IsOSPlatform(OSPlatform.Windows))
+            _logger.LogInformation("Running as: {User}", WindowsIdentity.GetCurrent().Name);
+
+        _logger.LogInformation("Is 64-bit process: {Is64Bit}", Environment.Is64BitProcess);
 
         using var store = new X509Store(StoreName.My, StoreLocation.CurrentUser);
         store.Open(OpenFlags.ReadOnly);
