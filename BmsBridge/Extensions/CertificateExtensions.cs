@@ -1,4 +1,3 @@
-using Microsoft.Extensions.Options;
 using System.Runtime.InteropServices;
 
 public static class CertificateExtensions
@@ -7,11 +6,12 @@ public static class CertificateExtensions
     {
         if (RuntimeInformation.IsOSPlatform(OSPlatform.Windows))
         {
-            services.AddSingleton<ICertificateSource>(sp =>
-            {
-                var options = sp.GetRequiredService<IOptions<AzureSettings>>();
-                return new StoreCertificateSource(options);
-            });
+            // services.AddSingleton<ICertificateSource>(sp =>
+            // {
+            //     var options = sp.GetRequiredService<IOptions<AzureSettings>>();
+            //     return new StoreCertificateSource(options);
+            // });
+            services.AddSingleton<ICertificateSource, StoreCertificateSource>();
         }
         else
         {
