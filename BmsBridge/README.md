@@ -44,7 +44,7 @@ These values allow the program to authenticate with Azure Key Vault and provisio
   "secret_name": "",
   "vault_name": "",
   "certificate_subject": "",
-  "sas_ttl_days": 90
+  "sas_ttl_days": "90"
 }
 ```
 
@@ -53,14 +53,14 @@ All fields must be filled in.
 ### 2. BMS Devices (Required)
 
 List each controller you want the program to poll.
-DeviceType must be one of ("Danfoss", "EmersonE2", or "EmersonE3").
+device_type must be one of ("Danfoss", "EmersonE2", or "EmersonE3").
 
 ```json
 "NetworkSettings": {
   "bms_devices": [
     {
-      "IP": "11.170.71.182",
-      "DeviceType": "Danfoss"
+      "ip": "11.170.71.182",
+      "device_type": "Danfoss"
     }
   ]
 }
@@ -76,9 +76,12 @@ Controls polling behavior and timeouts.
   "http_timeout_delay_seconds": 30,
   "http_retry_count": 1,
   "soft_reset_interval_hours": 12,
-  "keep_alive": false
+  "keep_alive": false,
+  "use_cloud": true
 }
 ```
+
+When use_cloud is false, telemetry will be dumped **without truncation** to a jsonl file. This is useful for testing and seeing local payloads.
 
 ### 4. Logging Settings
 
@@ -91,6 +94,8 @@ Controls log file size and retention.
   "RetainedFileCountLimit": 7
 }
 ```
+
+Recommended options for "MinimumLevel" are "Information" and "Debug"
 
 ---
 

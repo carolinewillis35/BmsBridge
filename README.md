@@ -78,7 +78,7 @@ All fields are required.
   "secret_name": "",
   "vault_name": "",
   "certificate_subject": "",
-  "sas_ttl_days": 90
+  "sas_ttl_days": "90"
 }
 ```
 
@@ -91,8 +91,8 @@ List of BMS devices to poll.
 "NetworkSettings": {
   "bms_devices": [
     {
-      "IP": "12.345.67.890",
-      "DeviceType": "Danfoss"
+      "ip": "12.345.67.890",
+      "device_type": "Danfoss"
     }
   ]
 }
