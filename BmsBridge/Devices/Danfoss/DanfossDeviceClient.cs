@@ -33,7 +33,7 @@ public sealed class DanfossDeviceClient : BaseDeviceClient
     private List<JsonObject> _input = new();
     private List<JsonObject> _relay = new();
     private List<JsonObject> _var_out = new();
-    // private List<JsonObject> _lists = new();
+    private List<JsonObject> _lists = new();
 
     public DanfossDeviceClient(
         Uri endpoint,
@@ -104,8 +104,8 @@ public sealed class DanfossDeviceClient : BaseDeviceClient
         _var_out = await ReadVarOutAsync(ct);
         _relay = await ReadRelayAsync(ct);
 
-        // DISABLED
-        // _lists = await ReadListAsync(ct);
+        // EXPERIMENTAL
+        _lists = await ReadListAsync(ct);
 
         _hvac.ForEach(_polledData.Add);
         _hvacs.ForEach(_polledData.Add);
@@ -123,6 +123,7 @@ public sealed class DanfossDeviceClient : BaseDeviceClient
         _input.ForEach(_polledData.Add);
         _var_out.ForEach(_polledData.Add);
         _relay.ForEach(_polledData.Add);
+        _lists.ForEach(_polledData.Add);
 
         var diff = _dataWarehouse.ProcessIncoming(_polledData);
         await _iotDevice.SendMessageAsync(diff, ct);
@@ -303,18 +304,25 @@ public sealed class DanfossDeviceClient : BaseDeviceClient
 
     private async Task<List<JsonObject>> ReadListAsync(CancellationToken ct = default)
     {
-        var op = new DanfossReadListOperation(
+        var outList = new List<JsonObject>();
+
+        foreach (var hvacEntry in _hvac)
+        {
+            var node = hvacEntry["data"]?["@node"]?.GetValue<string>() ?? "0";
+            var nodeType = hvacEntry["data"]?["@nodetype"]?.GetValue<string>() ?? "0";
+
+            var op = new DanfossReadListOperation(
                 endpoint: _endpoint,
-                nodeType: "2",
-                tableAddress: "20021",
-                node: "0",
-                combo: "6",
-                index: "1",
-                bpIndex: "2",
-                argument1: "1",
+                nodeType: nodeType,
+                tableAddress: "20021", // We have to guess this number. TODO: fix later
+                node: node,
+                combo: hvacEntry["data"]?["@combo"]?.GetValue<string>() ?? "0",
+                index: hvacEntry["data"]?["@index"]?.GetValue<string>() ?? "0",
+                bpIndex: hvacEntry["data"]?["@bpidx"]?.GetValue<string>() ?? "0",
+                argument1: hvacEntry["data"]?["@arg1"]?.GetValue<string>() ?? "0",
                 useParent: "0",
                 configType: "0",
-                sType: "1",
+                sType: hvacEntry["data"]?["stype"]?.GetValue<string>() ?? "0",
                 subGroup: "0",
                 page: "0",
                 oldConfigType: "0",
@@ -322,9 +330,13 @@ public sealed class DanfossDeviceClient : BaseDeviceClient
                 group: "0",
                 loggerFactory: _loggerFactory
             );
-        var result = await op.ExecuteAsync(_pipelineExecutor, ct);
 
-        return new List<JsonObject>();
+            var result = await ControllerLevelParse(op, ct, $"list:{nodeType}:{node}:20021");
+
+            outList.Add(result);
+        }
+
+        return outList;
     }
 
     private async Task<JsonObject> ReadMetersAsync(CancellationToken ct = default)
@@ -576,6 +588,7 @@ public sealed class DanfossDeviceClient : BaseDeviceClient
         _input = new();
         _relay = new();
         _var_out = new();
+        _lists = new();
     }
 
     private List<JsonObject> DynamicAddressParse(DeviceOperationResult<JsonNode?> result)

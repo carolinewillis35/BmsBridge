@@ -41,19 +41,14 @@ public sealed class DanfossReadListOperation : DanfossBaseDeviceOperation
         attributes.Add(new XAttribute("subgroup", subGroup));
         attributes.Add(new XAttribute("page", page));
         attributes.Add(new XAttribute("old_cfgtype", oldConfigType));
-        attributes.Add(new XAttribute("user", "Manager"));
-        attributes.Add(new XAttribute("password", "0162"));
 
         _extraAttributes = attributes;
     }
 
-    protected override JsonArray? GetRelevantData(JsonNode? json)
+    protected override JsonArray GetRelevantData(JsonNode? json)
     {
-        var response = json?["resp"]?["sensor"] as JsonArray;
+        var node = json?["resp"];
 
-        if (response is null)
-            return new JsonArray();
-
-        return response;
+        return EnforceData(node);
     }
 }
