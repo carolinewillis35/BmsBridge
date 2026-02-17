@@ -46,4 +46,12 @@ using (var scope = app.Services.CreateScope())
     await svc.CleanupAllAsync();
 }
 
-app.Run();
+
+try
+{
+    app.Run();
+}
+finally
+{
+    Environment.Exit(0); // for unconfigured nssm
+}
